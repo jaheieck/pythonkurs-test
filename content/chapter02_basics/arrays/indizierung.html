@@ -1,0 +1,902 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Indizierung von Arrays &#8212; Python-Programmierkurs</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b8171b4a" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/chapter02_basics/arrays/indizierung';</script>
+    <link rel="canonical" href="/pythonkurs-test/content/chapter02_basics/arrays/indizierung.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Rechnen mit Arrays" href="rechnen_mit_arrays.html" />
+    <link rel="prev" title="Arrayerstellung" href="arrayerstellung.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python-Programmierkurs</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Minimal Working Example</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../notebooks.html">Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../markdown-notebooks.html">Markdown Notebook</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Einführung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/vorwort.html">Vorwort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/kursstruktur.html">Struktur des Kurses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/installationsguide.html">Infos zu Python</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/funktionsweise_jupyter_book.html">Wie nutzt man dieses Jupyterbook?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/funktionsweise_jupyter_notebook.html">Wie nutzt man Jupyter-Notebooks?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Grundlagen von Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="array_intro.html">Arrays</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="arrayerstellung.html">Arrayerstellung</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Indizierung von Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rechnen_mit_arrays.html">Rechnen mit Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logische_arrays.html">Logische Indizierung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quiz.html">Quiz</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python schlauer nutzen</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter03_spezialisierung/functions/functions_intro.html">Funktionen</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/functions/dreiecke.html">Funktionen schreiben</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/functions/function_handles.html">Function handles</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter03_spezialisierung/debugging/debugging_intro.html">Debugging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/debugging/error_signs.html">Fehleranzeige</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/debugging/analysing_code.html">Fehleranalyse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/debugging/efficiency.html">Vektorisierung</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter03_spezialisierung/AI/KI_intro.html">KI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/AI/Programmieren_mit_KI.html">Programmieren mit KI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/AI/Debugging_mit_KI.html">Debugging mit KI</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datenverabeitung in Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter03_spezialisierung/arrays_2/arrays_2_intro.html">Arrays II</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/arrays_2/arrayerstellung.html">Arrayerstellung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/arrays_2/concatenating_arrays.html">Arrays zusammenfügen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/arrays_2/reshaping_arrays.html">Arrays umformen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/arrays_2/quiz.html">Quiz</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter03_spezialisierung/visualisation_2/visualisation_2_intro.html">Visualisierung II</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/visualisation_2/advanced_2D_plots.html">Plots individuell gestalten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/visualisation_2/several_lines_one_plot.html">Mehrfach-Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/visualisation_2/3D_plots.html">3D Plots</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter03_spezialisierung/working_with_data/working_with_data_intro.html">Mit Daten arbeiten</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/working_with_data/organizing_data_in_table.html">Tabellen aufbauen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/working_with_data/organizing_data_in_table_2.html">Tabellen auslesen</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/content/chapter02_basics/arrays/indizierung.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Indizierung von Arrays</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einzelne-arrayelemte-extrahieren">Einzelne Arrayelemte extrahieren</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mehre-arrayelemente-extrahieren">Mehre Arrayelemente extrahieren</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arraywerte-modifizieren">Arraywerte modifizieren</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="indizierung-von-arrays">
+<h1>Indizierung von Arrays<a class="headerlink" href="#indizierung-von-arrays" title="Link to this heading">#</a></h1>
+<p>Da Arrays für die Programmierung numerischer Algorithmen fundamental sind, ist es wichtig, vertraut im Umgang mit ihnen zu sein.
+Der erste Schritt ist das Zugreifen oder Verweisen auf Elemente eines Arrays, auch Indizierung genannt.
+Die Indizierung erlaubt es, Elemente eines Arrays auszulesen oder zu verändern.
+Die Position eines Wertes innerhalb eines Arrays nennt man <em>Index</em>. In Python beginnt die Indizierung bei <span class="math notranslate nohighlight">\(0\)</span>, das bedeutet das erste Element hat den Index <span class="math notranslate nohighlight">\(0\)</span>, das zweite den Index <span class="math notranslate nohighlight">\(1\)</span>, das dritte den Index <span class="math notranslate nohighlight">\(2\)</span> und so weiter.</p>
+<p>In diesem Unterkapitel werden Sie mit dem eindimensionalen Array <code class="docutils literal notranslate"><span class="pre">alter</span></code> und zweidimensionalem Array <code class="docutils literal notranslate"><span class="pre">data</span></code> arbeiten. Der folgende, versteckte Code initialisiert sowohl <code class="docutils literal notranslate"><span class="pre">alter</span></code> als auch <code class="docutils literal notranslate"><span class="pre">data</span></code> automatisch sobald Sie den Live-Code-Modus starten.</p>
+<div class="cell tag_thebe-init tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www4.stat.ncsu.edu/~boos/var.select/diabetes.tab.txt&quot;</span>
+
+<span class="n">diabetes_data_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">)</span>
+<span class="n">diabetes_data_raw</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">diabetes_data_raw</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">diabetes_data_raw</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">]]</span>
+<span class="n">data</span><span class="p">[:</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="n">alter</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">alter</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">data</span></code> sind Daten von 15 verschiedenen Diabetespatientinnen hinterlegt. Eine Zeile entspricht einem oder einer Patienten/in und eine Spalte den verschiedene Daten, die erhoben worden sind. Es stehen folgende Daten zur Verfügung:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><p>Spalte 0</p></td>
+<td><p>Alter in Jahren</p></td>
+</tr>
+<tr class="row-even"><td><p>Spalte 1</p></td>
+<td><p>Body Mass Index (BMI)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Spalte 2</p></td>
+<td><p>Blutdruck</p></td>
+</tr>
+<tr class="row-even"><td><p>Spalte 3</p></td>
+<td><p>Cholesterinwerte</p></td>
+</tr>
+<tr class="row-odd"><td><p>Spalte 4</p></td>
+<td><p>Blutzuckerwerte</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">alter</span></code> ist das Alter der Patientinnen in Jahren hinterlegt.</p>
+<section id="einzelne-arrayelemte-extrahieren">
+<h2>Einzelne Arrayelemte extrahieren<a class="headerlink" href="#einzelne-arrayelemte-extrahieren" title="Link to this heading">#</a></h2>
+<p>Um ein einzelnes Element eines eindimensionalen Array <code class="docutils literal notranslate"><span class="pre">x</span></code> auszulesen (zu vergleichen mit einem <em>Vektor</em>), nutzt man die Syntax <code class="docutils literal notranslate"><span class="pre">x[idx]</span></code>. Möchte man beispielsweise das dritte Element von <code class="docutils literal notranslate"><span class="pre">x</span></code> auslesen, so ist dies mit <code class="docutils literal notranslate"><span class="pre">x[2]</span></code> möglich.</p>
+<p><strong>BILD</strong></p>
+<p>Um Elemente aus einem zweidimensional Array <code class="docutils literal notranslate"><span class="pre">A</span></code> auszulesen (zu vergleichen mit einer <em>Matrix</em>), benötigen man zwei Indizes. Der erste gibt die Zeile, der zweite die Spalte an: <code class="docutils literal notranslate"><span class="pre">A[zeile,</span> <span class="pre">spalte]</span></code>. Beispielsweise gibt <code class="docutils literal notranslate"><span class="pre">A[0,</span> <span class="pre">2]</span></code> den Wert in der ersten Zeile und der dritten Spalte zurück.</p>
+<p><strong>BILD</strong></p>
+<p>Beachten Sie: Die Indizierung beginnt bei <span class="math notranslate nohighlight">\(0\)</span>, das bedeute das erste Element wird mit dem Index <span class="math notranslate nohighlight">\(0\)</span> ausgelesen.</p>
+<div class="admonition-aufgabe-1-1 admonition">
+<p class="admonition-title">Aufgabe 1.1</p>
+<p>Speichern Sie das Alter von Patientin 4 also das vierte Element des Arrays <code class="docutils literal notranslate"><span class="pre">alter</span></code> in einer Variablen <code class="docutils literal notranslate"><span class="pre">patient_a</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Beachten Sie, dass in Python die Indizierung bei <span class="math notranslate nohighlight">\(0\)</span> beginnt. Verwenden Sie <code class="docutils literal notranslate"><span class="pre">[]</span></code> zur Indizierung in <code class="docutils literal notranslate"><span class="pre">alter</span></code>.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">patient_a</span> <span class="o">=</span> <span class="n">alter</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<br>
+<div class="admonition-aufgabe-1-2 admonition">
+<p class="admonition-title">Aufgabe 1.2</p>
+<p>Speichern Sie ebenfalls den BMI von Patientin 4 also das Element in der vierten Zeile und zweiten Spalte des Arrays <code class="docutils literal notranslate"><span class="pre">data</span></code> in einer Variablen <code class="docutils literal notranslate"><span class="pre">patient4_bmi</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Beachten Sie, dass in Python die Indizierung bei <span class="math notranslate nohighlight">\(0\)</span> beginnt. Verwenden Sie <span class="math notranslate nohighlight">\(1\)</span> und <span class="math notranslate nohighlight">\(3\)</span> zur Indizierung in <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">patient4_bmi</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<br>
+<p>Python ermöglicht es Ihnen <span class="math notranslate nohighlight">\(-1\)</span> als Index bei Arrays zuverwenden, um auf das letzte Element zugreifen.
+Möchten Sie zum Beispiel auf das letzte Elemente des eindimensionalen Arrays <code class="docutils literal notranslate"><span class="pre">x</span></code> zugreifen, geht dies mit der Syntax <code class="docutils literal notranslate"><span class="pre">x[-1]</span></code>.
+Bei zweidimensionalen Arrays müssen Sie zudem einen zweiten Index angeben. So gibt <code class="docutils literal notranslate"><span class="pre">A[-1,</span> <span class="pre">3]</span></code> beispielsweise den Eintrag in der letzten Zeile und 4. Spalte zurück.</p>
+<p><strong>BILD</strong></p>
+<p>Die Verwendung des Index <span class="math notranslate nohighlight">\(-1\)</span> um auf das letzte Element zuzugreifen, ist Teil der allgemeinen Indexierungslogik in Python, bei der negative Indizes verwendet werden, um Elemente von hinten aus zu zählen. Das bedeutet:</p>
+<ul class="simple">
+<li><p><em>Positive Indizes</em> beginnen am Anfang des Arrays und zählen nach rechts: <span class="math notranslate nohighlight">\(0, 1, 2,\ldots\)</span></p></li>
+<li><p><em>Negative Indizes</em> beginnen am Ende des Arrays und zählen nach links: <span class="math notranslate nohighlight">\(-1, -2, -3,\ldots\)</span></p></li>
+</ul>
+<div class="admonition-aufgabe-1-3 admonition">
+<p class="admonition-title">Aufgabe 1.3</p>
+<p>Extrahieren Sie den Wert in der 2. Zeile und der letzten Spalte von <code class="docutils literal notranslate"><span class="pre">data</span></code>, indem Sie die Syntax <code class="docutils literal notranslate"><span class="pre">-1</span></code> verwenden. Weisen Sie anschließend diesen Wert einer Variablen mit dem Namen <code class="docutils literal notranslate"><span class="pre">patient3_blutzucker</span></code> zu.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">patient2_blutzucker</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<br>
+<div class="admonition-aufgabe-1-4 admonition">
+<p class="admonition-title">Aufgabe 1.4</p>
+<p>Erstellen Sie eine Variable <code class="docutils literal notranslate"><span class="pre">patient_b_alter</span></code>, die das Alter der vorletzten Patentin, also das vorletzte Element von <code class="docutils literal notranslate"><span class="pre">alter</span></code> enthält. Nutzen Sie negative Indizes!</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">patient_b_alter</span> <span class="o">=</span> <span class="n">alter</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<br>
+</section>
+<section id="mehre-arrayelemente-extrahieren">
+<h2>Mehre Arrayelemente extrahieren<a class="headerlink" href="#mehre-arrayelemente-extrahieren" title="Link to this heading">#</a></h2>
+<p>Oft benötigt man eine ganze Zeile oder eine ganze Spalte eines zweidimensionales Arrays <code class="docutils literal notranslate"><span class="pre">A</span></code>. In diesem Fall kann der Doppelpunkt-Operator <code class="docutils literal notranslate"><span class="pre">:</span></code> als Index verwenden, was Python als “alle Zeilen” oder “alle Spalten” interpretiert. Zum Beispiel liefert <code class="docutils literal notranslate"><span class="pre">A[0,</span> <span class="pre">:]</span></code> die erste Zeile von <code class="docutils literal notranslate"><span class="pre">A</span></code> und <code class="docutils literal notranslate"><span class="pre">A[:,</span> <span class="pre">1]</span></code> die zweite Spalte von <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+<p><strong>BILD</strong></p>
+<div class="admonition-aufgabe-2-1 admonition">
+<p class="admonition-title">Aufgabe 2.1</p>
+<p>Erstellen Sie einen Spaltenvektor mit dem Namen <code class="docutils literal notranslate"><span class="pre">blutdruck</span></code>, der alle Elemente aus der 3. Spalte des Arrays <code class="docutils literal notranslate"><span class="pre">data</span></code> enthält.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Verwenden Sie den Operator <code class="docutils literal notranslate"><span class="pre">:</span></code> als ersten Index. Mit diesem Operator werden alle Zeilen extrahiert. Verwenden Sie <span class="math notranslate nohighlight">\(2\)</span> als zweiten Index. Dieser Index gibt die dritte Spalte an.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">blutdruck</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<br>
+<p>Sie können den Doppelpunkt-Operator ebenfalls verwenden, um einen Wertebereich anzugeben um so mehrere aufeinanderfolgende Elemente auszulesen.
+Der Code <code class="docutils literal notranslate"><span class="pre">x[1:4]</span></code> extrahiert das zweite, dritte und vierte Element des Arrays <code class="docutils literal notranslate"><span class="pre">x</span></code>. Der fünfte Wert <code class="docutils literal notranslate"><span class="pre">x[4]</span></code> wird dabei nicht mit ausgelesen. Die Syntax <code class="docutils literal notranslate"><span class="pre">start:end</span></code> ist also als das halboffenes Intervall <span class="math notranslate nohighlight">\([\texttt{start}, \texttt{end})\)</span> zu verstehen.</p>
+<p><strong>BILD</strong></p>
+<p>Genauso liefert <code class="docutils literal notranslate"><span class="pre">A[0:3,</span> <span class="pre">2]</span></code> das erste, zweite und dritte Element der dritten Spalte von <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+<div class="admonition-aufgabe-2-2 admonition">
+<p class="admonition-title">Aufgabe 2.2</p>
+<p>Extrahieren Sie aus dem eindimensionalen Array <code class="docutils literal notranslate"><span class="pre">alter</span></code> das der Patienten 5 bis 12 und speichern Sie das Ergebnis in der Variablen <code class="docutils literal notranslate"><span class="pre">teilgruppe_alter</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># sollte (15, 5) liefern</span>
+<span class="n">teilgruppe_alter</span> <span class="o">=</span> <span class="n">alter</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<br>
+<div class="admonition-aufgabe-2-3 admonition">
+<p class="admonition-title">Aufgabe 2.3</p>
+<p>Erstellen Sie die Variable <code class="docutils literal notranslate"><span class="pre">blutwerte</span></code>, die die letzten beiden Spalten von <code class="docutils literal notranslate"><span class="pre">data</span></code> enthält.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># sollte (15, 5) liefern</span>
+<span class="n">blutwerte</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<br>
+<p>Python stellt außderdem eine komfortable Methode zur Verfügung, um alle Elemente ausgehend von einem Startindex zu extrahieren: <code class="docutils literal notranslate"><span class="pre">x[3:]</span></code>. Dieses Beispiel gibt die Teilmenge der Elemente von <code class="docutils literal notranslate"><span class="pre">x</span></code> beginnend Index <span class="math notranslate nohighlight">\(3\)</span> bis zum Ende des Vektors zurück.</p>
+<p>Umgekehrt gibt der Code <code class="docutils literal notranslate"><span class="pre">x[:4]</span></code> die Teilmenge der Elemente von <code class="docutils literal notranslate"><span class="pre">x</span></code> beginned bei Index <span class="math notranslate nohighlight">\(0\)</span> bis einschließlich Index <span class="math notranslate nohighlight">\(3\)</span>. Das Ende des Wertebereichts ist also wieder als offene Intervallgrenze zu verstehen.</p>
+<p><strong>BILD</strong></p>
+<p>Zusammen mit einem weiteren Index funktioniert diese Syntax auch für zweidimensionale Array vollkommen analog.</p>
+<div class="admonition-aufgabe-2-4 admonition">
+<p class="admonition-title">Aufgabe 2.4</p>
+<p>Erstellen Sie eine Array mit dem Namen <code class="docutils literal notranslate"><span class="pre">testgruppe_a</span></code>, welches alle Daten der ersten sieben Patientinnen, sprich die ersten 7 Zeilen und allte Spalten des Array <code class="docutils literal notranslate"><span class="pre">data</span></code> enthält.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">testgruppe_a</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="mi">7</span><span class="p">,</span> <span class="p">:]</span>
+
+<span class="c1"># alternativ bzw- äquvalent</span>
+<span class="n">testgruppe_a</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<br>
+<div class="admonition-zusatzaufgabe admonition">
+<p class="admonition-title">Zusatzaufgabe</p>
+<p>Bei Indizes kann es sich auch um nicht aufeinanderfolgende Zahlen handeln. Beispielsweise können Sie zum Extrahieren der ersten, dritten und sechsten Elemente von <code class="docutils literal notranslate"><span class="pre">alter</span></code> den Index <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">2,</span> <span class="pre">5]</span></code> verwenden.</p>
+<p>Aber Achtung: Hier ist es wichtig, dass Sie die eckigen Klammern um die Indizes <code class="docutils literal notranslate"><span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">5</span></code> beim Einsetzen nicht vergessen!</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code</span>
+</pre></div>
+</div>
+</div>
+</div>
+<br>
+<p><strong>Zusammenfassung</strong></p>
+<p>In Python beginnt die Indizierung bei <span class="math notranslate nohighlight">\(0\)</span> anstatt bei <span class="math notranslate nohighlight">\(1\)</span>. Bei Angabe von Indexbereichen mittels <code class="docutils literal notranslate"><span class="pre">:</span></code> ist die rechte Intervalgrenze offen, das heißt <code class="docutils literal notranslate"><span class="pre">i:j</span></code> umfasst die Indizes <span class="math notranslate nohighlight">\([i, j)\)</span>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><p>einzelnes Element</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x[idx]</span></code> oder <code class="docutils literal notranslate"><span class="pre">A[zeile,</span> <span class="pre">spalte]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>letztes Element</p></td>
+<td><p><span class="math notranslate nohighlight">\(\{\)</span><code class="docutils literal notranslate"><span class="pre">idx</span></code>, <code class="docutils literal notranslate"><span class="pre">zeile</span></code>, <code class="docutils literal notranslate"><span class="pre">spalte</span></code><span class="math notranslate nohighlight">\(\} = -1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>alle Zeilen bzw. Spalten</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">A[:,</span> <span class="pre">spalte]</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">A[zeile,</span> <span class="pre">:]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>alle Werte ab Index <span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">i:</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>alle Werte bis Index <span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">:(i+1)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>alle Werte zwischen Index <span class="math notranslate nohighlight">\(i\)</span> und <span class="math notranslate nohighlight">\(j\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">i:(j+1)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="arraywerte-modifizieren">
+<h2>Arraywerte modifizieren<a class="headerlink" href="#arraywerte-modifizieren" title="Link to this heading">#</a></h2>
+<p>Zum Modifizieren von Arrayelementen kann die gleiche Syntax kann verwendet werden wie um den Wert eines Elements auszulesen. Zum Beispiel ändert <code class="docutils literal notranslate"><span class="pre">x[2]</span> <span class="pre">=</span> <span class="pre">-2</span></code> das dritte Element des eindimensionalen Array <code class="docutils literal notranslate"><span class="pre">x</span></code> von <span class="math notranslate nohighlight">\(0\)</span> zu <span class="math notranslate nohighlight">\(-2\)</span>. Für zweidimensionale Arrays ist das Vorgehen analog. Zum Beispiel ändert <code class="docutils literal notranslate"><span class="pre">A[3,</span> <span class="pre">2]</span> <span class="pre">=</span>&#160; <span class="pre">3</span></code> das Element in der 4. Zeile und 3. Spalte von <span class="math notranslate nohighlight">\(-1\)</span> zu <span class="math notranslate nohighlight">\(3\)</span>.</p>
+<p><strong>BILD</strong></p>
+<p>Leider ist beim Eintragen der Patientinnendaten ein Fehler unterlaufen, sodass das Alter von Patentinn <span class="math notranslate nohighlight">\(3\)</span> nicht eingetragen wurde (gekennzeichent durch nan, engl. <strong>N</strong>ot <strong>a N</strong>umber).</p>
+<p><strong>BILD mit NAN</strong></p>
+<div class="admonition-aufgabe-3-1 admonition">
+<p class="admonition-title">Aufgabe 3.1</p>
+<p>Ändern Sie das dritte Element von <code class="docutils literal notranslate"><span class="pre">alter</span></code> von <code class="docutils literal notranslate"><span class="pre">nan</span></code> zu <span class="math notranslate nohighlight">\(72\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">alter</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">72</span>
+</pre></div>
+</div>
+</div>
+<p>Python erlaubt es außerdem auch direkt mehrere Werte aufeinmal zu ändern, genauso wie es möglich ist mehrere Werte aufeinmal auszulesen.</p>
+<p><strong>BILD</strong></p>
+<p>Ähnlich wie eine Lücke in den Altersdaten der Patienten, ist auch eine Lücke bei den Blutzuckerwerten zu verzeichnen.</p>
+<p><strong>BILD NAN MATRIX</strong></p>
+<div class="admonition-aufgabe-3-2 admonition">
+<p class="admonition-title">Aufgabe 3.2</p>
+<p>Erstellen Sie das Array <code class="docutils literal notranslate"><span class="pre">testgruppe_a_werte</span></code> mit den Einträgen</p>
+<p>$<span class="math notranslate nohighlight">\(\begin{pmatrix} 87 &amp; 69 &amp; 85 &amp; 89 &amp; 80 &amp; 68 &amp; 82 \end{pmatrix}\)</span>$.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">testgruppe_a_werte</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">87</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">82</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<br>
+<div class="admonition-aufgabe-3-3 admonition">
+<p class="admonition-title">Aufgabe 3.3</p>
+<p>Tragen Sie die Blutzuckerwerte der Testgruppe A nach, indem Sie den ersten 7 Einträge der letzen Spalten des Arrays <code class="docutils literal notranslate"><span class="pre">data</span></code> das Array <code class="docutils literal notranslate"><span class="pre">testgruppe_a_werte</span></code> zu weisen.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Greifen Sie zuerst auf die Einträge in der letzten Spalte und den ersten sieben Zeilen in <code class="docutils literal notranslate"><span class="pre">data</span></code> zu. Nutzen Sie anschließen den Zuweisungsoperator <code class="docutils literal notranslate"><span class="pre">=</span></code> zusammen mit <code class="docutils literal notranslate"><span class="pre">testgruppe_a_werte</span></code>.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[:</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">testgruppe_a_werte</span>
+
+<span class="c1"># alternativ</span>
+<span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">testgruppe_a_werte</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jaheieck/pythonkurs-test",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content\chapter02_basics\arrays"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="arrayerstellung.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Arrayerstellung</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="rechnen_mit_arrays.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Rechnen mit Arrays</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einzelne-arrayelemte-extrahieren">Einzelne Arrayelemte extrahieren</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mehre-arrayelemente-extrahieren">Mehre Arrayelemente extrahieren</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arraywerte-modifizieren">Arraywerte modifizieren</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jacob Heieck, Alena Ulke
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

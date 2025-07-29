@@ -1,0 +1,823 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fehleranzeige &#8212; Python-Programmierkurs</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b8171b4a" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/chapter03_spezialisierung/debugging/error_signs';</script>
+    <link rel="canonical" href="/pythonkurs-test/content/chapter03_spezialisierung/debugging/error_signs.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Fehleranalyse" href="analysing_code.html" />
+    <link rel="prev" title="Debugging" href="debugging_intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python-Programmierkurs</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Minimal Working Example</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../notebooks.html">Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../markdown-notebooks.html">Markdown Notebook</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Einführung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/vorwort.html">Vorwort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/kursstruktur.html">Struktur des Kurses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/installationsguide.html">Infos zu Python</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/funktionsweise_jupyter_book.html">Wie nutzt man dieses Jupyterbook?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/funktionsweise_jupyter_notebook.html">Wie nutzt man Jupyter-Notebooks?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Grundlagen von Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter02_basics/arrays/array_intro.html">Arrays</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter02_basics/arrays/arrayerstellung.html">Arrayerstellung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter02_basics/arrays/indizierung.html">Indizierung von Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter02_basics/arrays/rechnen_mit_arrays.html">Rechnen mit Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter02_basics/arrays/logische_arrays.html">Logische Indizierung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter02_basics/arrays/quiz.html">Quiz</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python schlauer nutzen</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/functions_intro.html">Funktionen</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../functions/dreiecke.html">Funktionen schreiben</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions/function_handles.html">Function handles</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="debugging_intro.html">Debugging</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Fehleranzeige</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analysing_code.html">Fehleranalyse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="efficiency.html">Vektorisierung</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../AI/KI_intro.html">KI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../AI/Programmieren_mit_KI.html">Programmieren mit KI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AI/Debugging_mit_KI.html">Debugging mit KI</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datenverabeitung in Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../arrays_2/arrays_2_intro.html">Arrays II</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../arrays_2/arrayerstellung.html">Arrayerstellung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arrays_2/concatenating_arrays.html">Arrays zusammenfügen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arrays_2/reshaping_arrays.html">Arrays umformen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arrays_2/quiz.html">Quiz</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../visualisation_2/visualisation_2_intro.html">Visualisierung II</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation_2/advanced_2D_plots.html">Plots individuell gestalten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation_2/several_lines_one_plot.html">Mehrfach-Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation_2/3D_plots.html">3D Plots</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../working_with_data/working_with_data_intro.html">Mit Daten arbeiten</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../working_with_data/organizing_data_in_table.html">Tabellen aufbauen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../working_with_data/organizing_data_in_table_2.html">Tabellen auslesen</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/content/chapter03_spezialisierung/debugging/error_signs.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fehleranzeige</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syntaxerror">SyntaxError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runtimeerror">RuntimeError</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fehleranzeige">
+<h1>Fehleranzeige<a class="headerlink" href="#fehleranzeige" title="Link to this heading">#</a></h1>
+<section id="syntaxerror">
+<h2>SyntaxError<a class="headerlink" href="#syntaxerror" title="Link to this heading">#</a></h2>
+<p>Wenn Sie eine neue Sprache lernen – sei es Englisch, Französisch oder eine Programmiersprache wie <code class="docutils literal notranslate"><span class="pre">Python</span></code> –, dann gibt es bestimmte Regeln, die Sie beachten müssen. Diese Regeln nennt man <code class="docutils literal notranslate"><span class="pre">Syntax</span></code>.</p>
+<div class="note admonition">
+<p class="admonition-title">Definition</p>
+<p>Die Syntax ist die Grammatik einer Programmiersprache. Sie legt fest, wie ein Programm geschrieben werden muss, damit der Computer es versteht.</p>
+</div>
+<p>Warum ist <code class="docutils literal notranslate"><span class="pre">Syntax</span></code> wichtig? Stellen Sie sich vor, Sie sagen zu jemandem: “Haben wir morgen Kino gehen?” Das klingt falsch, weil die Grammatik nicht stimmt. Ähnlich ist es in <code class="docutils literal notranslate"><span class="pre">Python</span></code>: Wenn du dich nicht an die Regeln hältst, bekommst du eine Fehlermeldung – einen <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>.</p>
+<p>Ein Beispiel für einen <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code> wäre der Code: <code class="docutils literal notranslate"><span class="pre">print</span> <span class="pre">&quot;Hallo,</span> <span class="pre">Welt!&quot;</span></code>. Führt man diesen Code aus, gibt Python eine Fehlermeldung aus:</p>
+<p><code class="docutils literal notranslate"><span class="pre">SyntaxError:</span> <span class="pre">Missing</span> <span class="pre">parentheses</span> <span class="pre">in</span> <span class="pre">call</span> <span class="pre">to</span> <span class="pre">'print'.</span> <span class="pre">Did</span> <span class="pre">you</span> <span class="pre">mean</span> <span class="pre">print(...)?</span></code></p>
+<p>Warum? Weil <code class="docutils literal notranslate"><span class="pre">print</span></code> Klammern braucht: <code class="docutils literal notranslate"><span class="pre">print(&quot;Hallo,</span> <span class="pre">Welt!&quot;)</span></code>.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">Python</span></code> werden Fehler normalerweise direkt im Ausgabe- oder Fehlerbereich angezeigt. Dort werden Sie eine Fehlermeldung sehen, die den Fehlerort und eine Beschreibung des Problems enthält. Die Fehlermeldung besteht häufig aus zwei Teilen:</p>
+<ol class="arabic simple">
+<li><p><strong>Fehlerbeschreibung</strong>: Hier wird der genaue Fehlertyp genannt, z.B. <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>, und eine kurze Erklärung, was das Problem ist (z.B. “unexpected EOF while parsing”).</p></li>
+<li><p><strong>Fehlerort</strong>: Der Codeabschnitt, in dem der Fehler auftritt, wird angezeigt, wobei oft der genaue Zeile des Fehlers (z.B. eine fehlende Klammer oder ein falsches Schlüsselwort) durch einen Indikator markiert wird.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="s2">&quot;Hallo, Welt!&quot;</span>
+<span class="c1"># print(&quot;Hallo, Welt!&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dadurch wird die Diagnose erleichtert.</p>
+<p>Die nachfolgenden Abschnitte beschreiben Ihnen jeweils fehlerhafte Codeabschnitte. Versuchen Sie in den Aufgaben die <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code> zu identifizieren und zu korrigieren. Nutzen Sie dazu gerne die Rückmeldung von <code class="docutils literal notranslate"><span class="pre">Python</span></code>, wenn Sie versuchen den Code laufen zu lassen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># falscher Code</span>
+<span class="kn">import</span> <span class="nn">np</span> 
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-1-1 admonition">
+<p class="admonition-title">Aufgabe 1.1</p>
+<p>Passen Sie den Code an, sodass die Fehlermeldung behoben wird.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p><code class="docutils literal notranslate"><span class="pre">NameError:</span> <span class="pre">name</span> <span class="pre">'np'</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">defined</span></code> deutet darauf hin, dass <code class="docutils literal notranslate"><span class="pre">numpy</span></code> nicht richtig importiert worden ist.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># numpy wurde korrekt importiert</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># falscher Code</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-1-2 admonition">
+<p class="admonition-title">Aufgabe 1.2</p>
+<p>Passen Sie den Code an, sodass die Fehlermeldung behoben wird.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p><code class="docutils literal notranslate"><span class="pre">VisibleDeprecationWarning:</span> <span class="pre">Creating</span> <span class="pre">an</span> <span class="pre">ndarray</span> <span class="pre">from</span> <span class="pre">ragged</span> <span class="pre">nested</span> <span class="pre">sequences</span> <span class="pre">is</span> <span class="pre">deprecated.</span></code> deutet darauf hin, dass <code class="docutils literal notranslate"><span class="pre">A</span></code> nicht korrekt definiert wurde.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>  <span class="c1"># alle Zeilen haben die gleiche Länge</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># falscher Code</span>
+<span class="k">def</span> <span class="nf">greet</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;Hallo!&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">greet</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-1-3 admonition">
+<p class="admonition-title">Aufgabe 1.3</p>
+<p>Passen Sie den Code an, sodass die Fehlermeldung behoben wird.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;function</span> <span class="pre">greet</span> <span class="pre">at</span> <span class="pre">0x...&gt;</span></code> deutet darauf hin, dass die Funktion nicht richtig aufgerufen wird.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">greet</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;Hallo!&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">greet</span><span class="p">())</span>  <span class="c1"># die Klammern haben gefehlt</span>
+</pre></div>
+</div>
+</div>
+<p>Zum Abschluss möchten wir Ihnen noch eine Liste der häufigsten <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code> mit auf den Weg geben.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fehler</p></th>
+<th class="head"><p>Beispiel</p></th>
+<th class="head"><p>Erklärung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Vergessene Klammern</strong></p></td>
+<td><p><nobr><code class="docutils literal notranslate"><span class="pre">print(&quot;Hello</span> <span class="pre">World&quot;</span></code></nobr></p></td>
+<td><p>Eine schließende Klammer fehlt.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Falsche Klammern verwendet</strong></p></td>
+<td><p><nobr><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">[x</span> <span class="pre">&gt;</span> <span class="pre">10]:</span></code></nobr></p></td>
+<td><p>Statt runder Klammern <code class="docutils literal notranslate"><span class="pre">()</span></code> wurden eckige Klammern <code class="docutils literal notranslate"><span class="pre">[]</span></code> verwendet.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Falsche Einrückung</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">10:</span>&#160;&#160; <span class="pre">print(x)</span></code></p></td>
+<td><p>Einrückung muss konstant sein.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Ungültiger Variablenname</strong></p></td>
+<td><p><nobr><code class="docutils literal notranslate"><span class="pre">2x</span> <span class="pre">=</span> <span class="pre">10</span></code></nobr></p></td>
+<td><p>Variablennamen dürfen nicht mit einer Zahl beginnen.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Falsche String-Begrenzung</strong></p></td>
+<td><p><nobr><code class="docutils literal notranslate"><span class="pre">'Hello</span> <span class="pre">World&quot;</span></code></nobr></p></td>
+<td><p>Ein String muss mit dem gleichen Zeichentyp abgeschlossen werden (z.B. beide <code class="docutils literal notranslate"><span class="pre">'</span></code> oder beide <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Fehlender Operator</strong></p></td>
+<td><p><nobr><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">10</span></code></nobr></p></td>
+<td><p>Ein Operator zwischen Variablen fehlt (z.B. <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">10</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Verwendung von reservierten Wörtern</strong></p></td>
+<td><p><nobr><code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">=</span> <span class="pre">10</span></code></nobr></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">def</span></code> ist ein reserviertes Schlüsselwort und kann nicht als Variablenname verwendet werden.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Zu viele Klammern</strong></p></td>
+<td><p><nobr><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(x</span> <span class="pre">&gt;</span> <span class="pre">10)):</span></code></nobr></p></td>
+<td><p>Zu viele schließende Klammern.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Falsche Anzahl von Argumenten</strong></p></td>
+<td><p><nobr><code class="docutils literal notranslate"><span class="pre">print(&quot;Hello&quot;,</span> <span class="pre">10)</span></code></nobr></p></td>
+<td><p>Eine Funktion erhält nicht die erforderliche Anzahl von Argumenten.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+</section>
+<section id="runtimeerror">
+<h2>RuntimeError<a class="headerlink" href="#runtimeerror" title="Link to this heading">#</a></h2>
+<p>Ein <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code> (Laufzeitfehler) tritt auf, wenn ein Programm syntaktisch korrekt ist, aber während der Ausführung einen Fehler verursacht. Diese Art von Fehler verhindert, dass das Programm weiterläuft oder manchmal auch, dass das Programm durchläuft, aber nicht das tut, was Sie wollen.</p>
+<p>Ein häufiger Grund für <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code> ist die Verwendung einer nicht definierten bzw. falsch geschriebenen Variablen. Das passiert, wenn man versucht, auf eine Variable zuzugreifen, die vorher nicht deklariert wurde. Dieser Fall hat den Vorteil, dass <code class="docutils literal notranslate"><span class="pre">Python</span></code> eine Fehlermeldung hervorruft.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Masse</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">Geschwindigkeit</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">kinetische_Energie</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">masse</span> <span class="o">*</span> <span class="n">Geschwindigkeit</span>
+<span class="c1"># kinetische_Energie = 0.5 * Masse * Geschwindigkeit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hier wurde die Variable <code class="docutils literal notranslate"><span class="pre">Masse</span></code> genannt, allerdings in der Rechnug über <code class="docutils literal notranslate"><span class="pre">masse</span></code> versucht aufgerufen zu werden. Auch wenn intuitiv klar ist, dass damit die gleiche Größe gemeint ist, kann <code class="docutils literal notranslate"><span class="pre">Python</span></code> damit nicht umgehen und zeigt die Fehlermeldung <code class="docutils literal notranslate"><span class="pre">NameError:</span> <span class="pre">name</span> <span class="pre">'masse'</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">defined</span></code>.</p>
+<p>Kniffliger wird es, wenn sich im eigenen Code <code class="docutils literal notranslate"><span class="pre">RuntimeErrors</span></code> eingeschlichen haben, die keine Fehlermeldung verursachen, aber die Ausführung so beeinflussen, dass das Ergebnis nicht das Gewünschte ist. Im Folgenden wollen wir uns dieses Phänomen anhand der Fibonacci-Folge anschauen. Diese ist eine Zahlenreihe, in der jede Zahl die Summe der beiden vorherigen Zahlen entspricht. Sie wird mit den beiden Folgenglieder 1 und 1 initialisiert. Folglich sind 1, 1, 2, 3, 5, 8, 13, ….die ersten 7 Folgenglieder. Das folgende Python-Code soll die ersten 10 Fibonacci-Zahlen berechnen. Es enthält jedoch Fehler, die wir schrittweise beheben werden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">fib</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Erstellt ein Array mit 10 Einträgen</span>
+<span class="n">fib</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Setzt fib[0] und fib[1] auf 1</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span> 
+    <span class="n">fib</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">fib</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">fib</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># Berechnet die Fibonacci-Zahlen iterativ</span>
+
+<span class="n">fibN</span> <span class="o">=</span> <span class="n">fib</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>  <span class="c1"># Zugriff auf die zuletzt berechnete Zahl</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Die </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">. Fibonacci-Zahl ist: </span><span class="si">{</span><span class="n">fibN</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-2-1 admonition">
+<p class="admonition-title">Aufgabe 2.1</p>
+<p>Wenn Sie versuchen den Code auszuführen erhalten Sie die Fehlermeldung <code class="docutils literal notranslate"><span class="pre">IndexError:</span> <span class="pre">index</span> <span class="pre">10</span> <span class="pre">is</span> <span class="pre">out</span> <span class="pre">of</span> <span class="pre">bounds</span> <span class="pre">for</span> <span class="pre">axis</span> <span class="pre">0</span> <span class="pre">with</span> <span class="pre">size</span> <span class="pre">10</span></code>. Woran könnte das liegen? Passen Sie den Code so an, dass die Fehlermeldung nicht mehr erscheint.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Der wie vielte Eintrag von <code class="docutils literal notranslate"><span class="pre">fib</span></code> wird über <code class="docutils literal notranslate"><span class="pre">fib[n]</span></code> abgefragt?</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">fib</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Erstellt ein Array mit 10 Einträgen</span>
+<span class="n">fib</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Setzt fib[0] und fib[1] auf 1</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>  
+    <span class="n">fib</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">fib</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">fib</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># Berechnet die Fibonacci-Zahlen iterativ</span>
+
+<span class="n">fibN</span> <span class="o">=</span> <span class="n">fib</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># Zugriff auf die zuletzt berechnete Zahl</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Die </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">. Fibonacci-Zahl ist: </span><span class="si">{</span><span class="n">fibN</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Wenn Sie den Code aus der Lösung ausführen, merken Sie dass nun keine Fehlermeldung mehr erscheint. Allerdings ist nach dem Code die 10. Fibonacci-Zahl die <span class="math notranslate nohighlight">\(9\)</span>, was nicht korrekt ist. Wie muss man den Code verändern, damit die richtige Zahl berechnet wird? In solchen Fällen kann es nützlich sein auch andere Variablen wie <code class="docutils literal notranslate"><span class="pre">fib</span></code> zu betrachten, um herauszufinden, an welcher Stelle der Code einen Fehler macht.</p>
+<div class="admonition-aufgabe-2-2 admonition">
+<p class="admonition-title">Aufgabe 2.2</p>
+<p>Passen Sie den Code an, sodass die richtige 10. Fibonacci-Zahl berechnet wird, nämlich <span class="math notranslate nohighlight">\(55\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Läuft die Schleife über die richtigen Elemente? Wird die richtige Zahl überschrieben in der Schleife?</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">fib</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Erstellt ein Array mit 10 Einträgen</span>
+<span class="n">fib</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Setzt fib[0] und fib[1] auf 1</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>  
+    <span class="n">fib</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">fib</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">fib</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># Berechnet die Fibonacci-Zahlen iterativ</span>
+
+<span class="n">fibN</span> <span class="o">=</span> <span class="n">fib</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># Zugriff auf die zuletzt berechnete Zahl</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Die </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">. Fibonacci-Zahl ist: </span><span class="si">{</span><span class="n">fibN</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>wichtig</strong>: Bitte in der Übung auf Hinweise, die im Jupyter Notebook angezeigt werden eingehen.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jaheieck/pythonkurs-test",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content\chapter03_spezialisierung\debugging"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="debugging_intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Debugging</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="analysing_code.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Fehleranalyse</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syntaxerror">SyntaxError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runtimeerror">RuntimeError</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jacob Heieck, Alena Ulke
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

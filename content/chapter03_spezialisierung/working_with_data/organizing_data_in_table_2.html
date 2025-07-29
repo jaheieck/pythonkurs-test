@@ -1,0 +1,908 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tabellendaten auslesen &#8212; Python-Programmierkurs</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b8171b4a" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/chapter03_spezialisierung/working_with_data/organizing_data_in_table_2';</script>
+    <link rel="canonical" href="/pythonkurs-test/content/chapter03_spezialisierung/working_with_data/organizing_data_in_table_2.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="Tabellen aufbauen" href="organizing_data_in_table.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python-Programmierkurs</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Minimal Working Example</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../notebooks.html">Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../markdown-notebooks.html">Markdown Notebook</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Einführung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/vorwort.html">Vorwort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/kursstruktur.html">Struktur des Kurses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/installationsguide.html">Infos zu Python</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/funktionsweise_jupyter_book.html">Wie nutzt man dieses Jupyterbook?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/funktionsweise_jupyter_notebook.html">Wie nutzt man Jupyter-Notebooks?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Grundlagen von Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter02_basics/arrays/array_intro.html">Arrays</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter02_basics/arrays/arrayerstellung.html">Arrayerstellung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter02_basics/arrays/indizierung.html">Indizierung von Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter02_basics/arrays/rechnen_mit_arrays.html">Rechnen mit Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter02_basics/arrays/logische_arrays.html">Logische Indizierung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter02_basics/arrays/quiz.html">Quiz</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python schlauer nutzen</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/functions_intro.html">Funktionen</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../functions/dreiecke.html">Funktionen schreiben</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions/function_handles.html">Function handles</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../debugging/debugging_intro.html">Debugging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../debugging/error_signs.html">Fehleranzeige</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debugging/analysing_code.html">Fehleranalyse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debugging/efficiency.html">Vektorisierung</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../AI/KI_intro.html">KI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../AI/Programmieren_mit_KI.html">Programmieren mit KI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AI/Debugging_mit_KI.html">Debugging mit KI</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datenverabeitung in Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../arrays_2/arrays_2_intro.html">Arrays II</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../arrays_2/arrayerstellung.html">Arrayerstellung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arrays_2/concatenating_arrays.html">Arrays zusammenfügen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arrays_2/reshaping_arrays.html">Arrays umformen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arrays_2/quiz.html">Quiz</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../visualisation_2/visualisation_2_intro.html">Visualisierung II</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation_2/advanced_2D_plots.html">Plots individuell gestalten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation_2/several_lines_one_plot.html">Mehrfach-Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation_2/3D_plots.html">3D Plots</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="working_with_data_intro.html">Mit Daten arbeiten</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="organizing_data_in_table.html">Tabellen aufbauen</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tabellen auslesen</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/content/chapter03_spezialisierung/working_with_data/organizing_data_in_table_2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tabellendaten auslesen</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daten-extrahieren">Daten extrahieren</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daten-bearbeiten">Daten bearbeiten</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tabellendaten-auslesen">
+<h1>Tabellendaten auslesen<a class="headerlink" href="#tabellendaten-auslesen" title="Link to this heading">#</a></h1>
+<p>Nachdem wir eigene Datenstrukturen erstellt haben, wenden wir uns nun der Arbeit mit existierenden Datensätzen zu. Dabei lernen wir, wie man Daten lädt, gezielt Informationen extrahiert und vorhandene Tabellen effizient bearbeitet, um aussagekräftige Analysen zu ermöglichen.</p>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">pandas</span></code> lassen sich Daten direkt aus dem Internet laden. Dazu verwendet man die Funktion <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code>, die <strong>CSV-Dateien</strong> (Comma Separated Values) einlesen kann. Gibt man dieser Funktion eine <strong>URL</strong> als <code class="docutils literal notranslate"><span class="pre">string</span></code>, lädt <code class="docutils literal notranslate"><span class="pre">pandas</span></code> die Datei direkt von dort und erstellt ein <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
+<div class="admonition-aufgabe-1-1 admonition">
+<p class="admonition-title">Aufgabe 1.1</p>
+<p>Laden Sie den Trinkgeld-Datensatz (URL: ‘<a class="reference external" href="https://raw.githubusercontent.com/mwaskom/seaborn-data/master/tips.csv">https://raw.githubusercontent.com/mwaskom/seaborn-data/master/tips.csv</a>’) als <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> unter dem Namen <code class="docutils literal notranslate"><span class="pre">Trinkgeld</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Verwenden Sie <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code>, um die Daten von der angegebenen URL zu laden. Stellen Sie sicher, dass die URL als <code class="docutils literal notranslate"><span class="pre">string</span></code> übergeben wird.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/mwaskom/seaborn-data/master/tips.csv&#39;</span>
+<span class="n">Trinkgeld</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Trinkgeld</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Der geladene Datensatz enthält Informationen über Restaurantbesuche. Jede Zeile steht für einen Besuch und enthält unter anderem:</p>
+<ul class="simple">
+<li><p>die Rechnungssumme (total_bill)</p></li>
+<li><p>das Trinkgeld (tip)</p></li>
+<li><p>das Geschlecht der Bedienung (sex)</p></li>
+<li><p>ob geraucht wurde (smoker)</p></li>
+<li><p>den Wochentag und die Uhrzeit</p></li>
+<li><p>die Anzahl der Gäste</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">DataFrame.head()</span></code> zeigt die ersten fünf Zeilen eines DataFrames an. Optional kann man in Klammern angeben, wie viele Zeilen man sehen möchte (z. B. <code class="docutils literal notranslate"><span class="pre">df.head(10)</span></code>). Vor dem Punkt muss der Name des <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code> stehen.</p>
+<div class="admonition-aufgabe-1-2 admonition">
+<p class="admonition-title">Aufgabe 1.2</p>
+<p>Versuchen Sie ein Gefühl für den Datensatz zu bekommen, indem Sie sich die ersten sieben Zeilen ausgeben lassen.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Nutzen Sie <code class="docutils literal notranslate"><span class="pre">DataFrame.head()</span></code>.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Trinkgeld</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<section id="daten-extrahieren">
+<h2>Daten extrahieren<a class="headerlink" href="#daten-extrahieren" title="Link to this heading">#</a></h2>
+<p>In einem <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> können Sie gezielt einzelne Spalten oder mehrere <strong>Spalten gleichzeitig extrahieren</strong>. Spalten entsprechen dabei inhaltlich den Merkmalen, also den Variablen, die in einer Datentabelle erfasst wurden – zum Beispiel <code class="docutils literal notranslate"><span class="pre">'total_bill'</span></code>, <code class="docutils literal notranslate"><span class="pre">'tip'</span></code> oder <code class="docutils literal notranslate"><span class="pre">'sex'</span></code>.</p>
+<p>Eine einzelne Spalte wählen Sie über ihren Spaltennamen in eckigen Klammern aus, z.B. <code class="docutils literal notranslate"><span class="pre">Trinkgeld['tip']</span></code>. Mehrere Spalten gleichzeitig ruft man mit einer Liste von Spaltennamen auf, z.B. <code class="docutils literal notranslate"><span class="pre">Trinkgeld[['tip','size']]</span></code></p>
+<div class="admonition-aufgabe-1-3 admonition">
+<p class="admonition-title">Aufgabe 1.3</p>
+<p>Extrahieren Sie die Spalten <code class="docutils literal notranslate"><span class="pre">'total_bill'</span></code> und <code class="docutils literal notranslate"><span class="pre">'tip'</span></code> und speichern diese als neuen DataFrame namens <code class="docutils literal notranslate"><span class="pre">rechnung_und_trinkgeld</span></code> ab.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Mehrere Spalten wählt man mit einer Liste von Spaltennamen in doppelten eckigen Klammern aus: <code class="docutils literal notranslate"><span class="pre">Trinkgeld[[...]]</span></code>.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rechnung_und_trinkgeld</span> <span class="o">=</span> <span class="n">Trinkgeld</span><span class="p">[[</span><span class="s1">&#39;total_bill&#39;</span><span class="p">,</span> <span class="s1">&#39;tip&#39;</span><span class="p">]]</span>
+<span class="n">rechnung_und_trinkgeld</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Neben einzelnen Spalten können Sie auch gezielt einzelne Zeilen oder Gruppen von <strong>Zeilen extrahieren</strong>. Dazu nutzen Sie ihren Indexwert. Standardmäßig haben <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code> einen numerischen Index, der bei 0 beginnt. Wenn Sie z. B. die erste Zeile von <code class="docutils literal notranslate"><span class="pre">Trinkgeld</span></code> anzeigen möchten, schreiben Sie <code class="docutils literal notranslate"><span class="pre">Trinkgeld.loc[0]</span></code>. Mehrere Zeilen lassen sich mit einer Liste von Indexwerten extrahieren, z. B. <code class="docutils literal notranslate"><span class="pre">Trinkgeld.loc[[0,</span> <span class="pre">2,</span> <span class="pre">4]]</span></code>. Auch ein ganzer Zeilenbereich kann mit einem Slice angegeben werden, z. B. <code class="docutils literal notranslate"><span class="pre">Trinkgeld.loc[0:4]</span></code>.</p>
+<div class="admonition-aufgabe-1-4 admonition">
+<p class="admonition-title">Aufgabe 1.4</p>
+<p>Extrahieren Sie die fünfte und sechste Zeile.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Nutzen Sie <code class="docutils literal notranslate"><span class="pre">Trinkgeld.loc[Index]</span></code>. Denken Sie daran, dass die Indixierung in <code class="docutils literal notranslate"><span class="pre">Python</span></code> bei 0 startet.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Trinkgeld</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Trinkgeld</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<p>Wenn Sie gleichzeitig <strong>Zeilen und Spalten extrahieren</strong> möchten, kombinieren Sie beide Auswahlkriterien in eckigen Klammern, z. B. <code class="docutils literal notranslate"><span class="pre">Trinkgeld.loc[0:2,</span> <span class="pre">[&quot;total_bill&quot;,</span> <span class="pre">&quot;tip&quot;]]</span></code>.</p>
+<div class="admonition-aufgabe-1-5 admonition">
+<p class="admonition-title">Aufgabe 1.5</p>
+<p>Extrahieren Sie die Zeilen 3 bis 11 und die Spalten <code class="docutils literal notranslate"><span class="pre">total_bill</span></code> und <code class="docutils literal notranslate"><span class="pre">size</span></code> aus.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Nutzen Sie <code class="docutils literal notranslate"><span class="pre">.loc[start:end,</span> <span class="pre">[Spaltenliste]]</span></code>.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Trinkgeld</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;total_bill&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Trinkgeld</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;total_bill&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<p>Neben der Auswahl nach Position oder Name lassen sich auch gezielt <strong>Zeilen mit bestimmten Eigenschaften extrahieren</strong>. Dabei formulieren Sie Bedingungen innerhalb der eckigen Klammern <code class="docutils literal notranslate"><span class="pre">[]</span></code>. Wenn Sie z. B. alle Zeilen anzeigen möchten, bei denen eine Frau bedient hat, schreiben Sie:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bedient_von_frau</span> <span class="o">=</span> <span class="n">Trinkgeld</span><span class="p">[</span><span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Female&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bedient_von_frau</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bei solchen <strong>kategorischen Bedingungen</strong> (z. B. <code class="docutils literal notranslate"><span class="pre">==</span> <span class="pre">'Female'</span></code>) gibt <code class="docutils literal notranslate"><span class="pre">pandas</span></code> automatisch nur die passenden Zeilen zurück.</p>
+<p>Genauso können Sie numerische Bedingungen formulieren, z. B. um alle Rechnungen über 30 Dollar zu extrahieren:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hohe_rechnungen</span> <span class="o">=</span> <span class="n">Trinkgeld</span><span class="p">[</span><span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;total_bill&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hohe_rechnungen</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sie können auch mehrere Bedingungen kombinieren, z. B. mit &amp; (und) oder | (oder). Dabei muss jede Teilbedingung in Klammern stehen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hohe_rechnungen_und_bedient_von_frau</span> <span class="o">=</span>  <span class="n">Trinkgeld</span><span class="p">[(</span><span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;total_bill&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Female&#39;</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hohe_rechnungen_und_bedient_von_frau</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-1-6 admonition">
+<p class="admonition-title">Aufgabe 1.6</p>
+<p>Filtern Sie alle Gäste, die in einem Raucherbereich saßen, und speichern die Daten als neuen DataFrame namens <code class="docutils literal notranslate"><span class="pre">raucher</span></code> ab.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Auch hier verwenden Sie eine Bedingung – diesmal auf die Spalte <code class="docutils literal notranslate"><span class="pre">'smoker'</span></code>.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">raucher</span> <span class="o">=</span> <span class="n">Trinkgeld</span><span class="p">[</span><span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;smoker&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raucher</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-aufgabe-1-7 admonition">
+<p class="admonition-title">Aufgabe 1.7</p>
+<p>Extrahieren Sie alle Zeilen, in denen entweder geraucht wurde oder das Trinkgeld über 6 $ lag. Speichern Sie diese in einem neuen DataFrame namens <code class="docutils literal notranslate"><span class="pre">rauch_oder_viel_trinkgeld</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Verwenden Sie den Operator <code class="docutils literal notranslate"><span class="pre">|</span></code> und setzen Sie jede Bedingung in Klammern.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rauch_oder_viel_trinkgeld</span> <span class="o">=</span> <span class="n">Trinkgeld</span><span class="p">[(</span><span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;smoker&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;tip&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rauch_oder_viel_trinkgeld</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="daten-bearbeiten">
+<h2>Daten bearbeiten<a class="headerlink" href="#daten-bearbeiten" title="Link to this heading">#</a></h2>
+<p>In einem <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> können Sie ganz einfach Rechenoperationen mit den Werten einzelner Spalten durchführen, z. B. <code class="docutils literal notranslate"><span class="pre">DataFrame['Differenz']</span> <span class="pre">=</span> <span class="pre">DataFrame['Spalte1']</span> <span class="pre">-</span> <span class="pre">DataFrame['Spalte2']</span></code>. Dabei funktioniert jede Rechenoperation elementweise – das heißt, sie wird automatisch auf jeden Wert der Spalte angewendet.</p>
+<div class="admonition-aufgabe-2-1 admonition">
+<p class="admonition-title">Aufgabe 2.1</p>
+<p>Der Euro-Wechselkurs beträgt aktuell 0.92. Rechnen Sie den Rechnungsbetrag (<code class="docutils literal notranslate"><span class="pre">total_bill</span></code>) und das Trinkgeld (<code class="docutils literal notranslate"><span class="pre">tip</span></code>) in Euro um und speichern Sie das Ergebnis jeweils in einer neuen Spalte.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also use . notation to create a new column in a table using the syntax:</p>
+<p>tbl.newVar = newColumn</p>
+<div class="admonition-aufgabe-2-2 admonition">
+<p class="admonition-title">Aufgabe 2.2</p>
+<p>Berechnen Sie für jede Zeile das Verhältnis von <code class="docutils literal notranslate"><span class="pre">tip</span></code> zur <code class="docutils literal notranslate"><span class="pre">total_bill</span></code> und speichern Sie das Ergebnis in einer neuen Spalte namens <code class="docutils literal notranslate"><span class="pre">tip_ratio</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Sie können zwei Spalten direkt miteinander verrechnen, zum Beispiel durch Division: <code class="docutils literal notranslate"><span class="pre">DataFrame['neue_spalte']</span> <span class="pre">=</span> <span class="pre">DataFrame['Spalte1']</span> <span class="pre">/</span> <span class="pre">DataFrame['Spalte2']</span></code></p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;tip_ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;tip&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;total_bill&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Trinkgeld</span><span class="p">[[</span><span class="s1">&#39;total_bill&#39;</span><span class="p">,</span> <span class="s1">&#39;tip&#39;</span><span class="p">,</span> <span class="s1">&#39;tip_ratio&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-aufgabe-2-3 admonition">
+<p class="admonition-title">Aufgabe 2.3</p>
+<p>Erstellen Sie eine neue Spalte namens <code class="docutils literal notranslate"><span class="pre">grosszuegig</span></code>, die angibt, ob das Trinkgeld mehr als 15 % der Gesamtrechnung beträgt. In dieser Spalte soll für jede Zeile entweder True oder False stehen – je nachdem, ob die Bedingung erfüllt ist.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Logische Bedingungen zwischen Spalten können direkt formuliert werden: <code class="docutils literal notranslate"><span class="pre">DataFrame['neue_spalte']</span> <span class="pre">=</span> <span class="pre">DataFrame['spalte']</span> <span class="pre">&gt;</span> <span class="pre">10</span></code></p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;grosszuegig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;tip_ratio&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.15</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Trinkgeld</span><span class="p">[[</span><span class="s1">&#39;total_bill&#39;</span><span class="p">,</span> <span class="s1">&#39;tip&#39;</span><span class="p">,</span> <span class="s1">&#39;tip_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;grosszuegig&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">pandas</span></code> lassen sich numerische Spalten sehr einfach auswerten, ohne dass man selbst durch die Werte iterieren muss. Stattdessen stellt <code class="docutils literal notranslate"><span class="pre">pandas</span></code> dafür eingebaute Funktionen zur Verfügung, wie etwa <code class="docutils literal notranslate"><span class="pre">.mean()</span></code> für den Mittelwert oder <code class="docutils literal notranslate"><span class="pre">.sum()</span></code> für die Summe.</p>
+<p>Solche Funktionen können direkt auf numerische Spalten angewendet werden. Dadurch erhält man auf einfache Weise Kennzahlen wie Minimum, Maximum, Mittelwert oder Standardabweichung.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Durchschnittliches Trinkgeld aller Gäste</span>
+<span class="n">durchschnitt</span> <span class="o">=</span> <span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;tip&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Durchschnittliches Trinkgeld: </span><span class="si">{</span><span class="n">durchschnitt</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> $&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die folgende Tabelle zeigt Ihnen einige der wichtigsten Funktionen, mit denen Sie numerische Spalten schnell auswerten können.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Funktion</p></th>
+<th class="head"><p>Beschreibung</p></th>
+<th class="head"><p>Beispiel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mean()</span></code></p></td>
+<td><p>Mittelwert</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DataFrame['Spalte'].mean()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">median()</span></code></p></td>
+<td><p>Median (Zentralwert)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DataFrame['Spalte'].median()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sum()</span></code></p></td>
+<td><p>Summe aller Werte</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DataFrame['Spalte'].sum()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">min()</span></code></p></td>
+<td><p>Kleinster Wert</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DataFrame['Spalte'].min()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max()</span></code></p></td>
+<td><p>Größter Wert</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DataFrame['Spalte'].max()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">std()</span></code></p></td>
+<td><p>Standardabweichung</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DataFrame['Spalte'].std()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">var()</span></code></p></td>
+<td><p>Varianz</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DataFrame['Spalte'].var()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">count()</span></code></p></td>
+<td><p>Anzahl gültiger Werte (ohne <code class="docutils literal notranslate"><span class="pre">NaN</span></code>)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DataFrame['Spalte'].count()</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition-aufgabe-2-4 admonition">
+<p class="admonition-title">Aufgabe 2.4</p>
+<p>Vergleichen Sie das durchschnittliche Trinkgeld von Gästen, die von einer Frau bedient wurden, mit dem von Gästen, die von einem Mann bedient wurden. Wer gibt im Schnitt mehr?</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Filtern Sie mit einer Bedingung auf die Spalte <code class="docutils literal notranslate"><span class="pre">'sex'</span></code>, z. B. <code class="docutils literal notranslate"><span class="pre">Trinkgeld[Trinkgeld['sex']</span> <span class="pre">==</span> <span class="pre">'Female']</span></code>, und wenden Sie <code class="docutils literal notranslate"><span class="pre">.mean()</span></code> auf die Spalte <code class="docutils literal notranslate"><span class="pre">tip</span></code> an.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frau</span> <span class="o">=</span> <span class="n">Trinkgeld</span><span class="p">[</span><span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Female&#39;</span><span class="p">][</span><span class="s1">&#39;tip&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mann</span> <span class="o">=</span> <span class="n">Trinkgeld</span><span class="p">[</span><span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Male&#39;</span><span class="p">][</span><span class="s1">&#39;tip&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Durchschnitt Trinkgeld – Frau bedient:&quot;</span><span class="p">,</span> <span class="n">frau</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Durchschnitt Trinkgeld – Mann bedient:&quot;</span><span class="p">,</span> <span class="n">mann</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-aufgabe-2-5 admonition">
+<p class="admonition-title">Aufgabe 2.5</p>
+<p>Finden Sie heraus, wie hoch das größte gegebene Trinkgeld war. Ermitteln Sie außerdem, zu welchem Rechnungsbetrag und an welchem Wochentag es gegeben wurde.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Nutzen Sie <code class="docutils literal notranslate"><span class="pre">.max()</span></code> auf die Spalte <code class="docutils literal notranslate"><span class="pre">tip</span></code>, um den höchsten Wert zu finden. Verwenden Sie anschließend eine Filterbedingung, um die entsprechende Zeile anzuzeigen.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">max_tip</span> <span class="o">=</span> <span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;tip&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">spender</span> <span class="o">=</span> <span class="n">Trinkgeld</span><span class="p">[</span><span class="n">Trinkgeld</span><span class="p">[</span><span class="s1">&#39;tip&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">max_tip</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Größtes Trinkgeld:&quot;</span><span class="p">,</span> <span class="n">max_tip</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">spender</span><span class="p">[[</span><span class="s1">&#39;total_bill&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jaheieck/pythonkurs-test",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content\chapter03_spezialisierung\working_with_data"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="organizing_data_in_table.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tabellen aufbauen</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daten-extrahieren">Daten extrahieren</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daten-bearbeiten">Daten bearbeiten</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jacob Heieck, Alena Ulke
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

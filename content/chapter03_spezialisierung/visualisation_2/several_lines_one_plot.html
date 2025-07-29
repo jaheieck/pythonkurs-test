@@ -1,0 +1,1249 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Mehrfach-Plots &#8212; Python-Programmierkurs</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b8171b4a" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/chapter03_spezialisierung/visualisation_2/several_lines_one_plot';</script>
+    <link rel="canonical" href="/pythonkurs-test/content/chapter03_spezialisierung/visualisation_2/several_lines_one_plot.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="3D Plots" href="3D_plots.html" />
+    <link rel="prev" title="Plots individuell gestalten" href="advanced_2D_plots.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python-Programmierkurs</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Minimal Working Example</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../notebooks.html">Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../markdown-notebooks.html">Markdown Notebook</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Einführung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/vorwort.html">Vorwort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/kursstruktur.html">Struktur des Kurses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/installationsguide.html">Infos zu Python</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/funktionsweise_jupyter_book.html">Wie nutzt man dieses Jupyterbook?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/funktionsweise_jupyter_notebook.html">Wie nutzt man Jupyter-Notebooks?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Grundlagen von Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter02_basics/arrays/array_intro.html">Arrays</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter02_basics/arrays/arrayerstellung.html">Arrayerstellung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter02_basics/arrays/indizierung.html">Indizierung von Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter02_basics/arrays/rechnen_mit_arrays.html">Rechnen mit Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter02_basics/arrays/logische_arrays.html">Logische Indizierung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter02_basics/arrays/quiz.html">Quiz</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python schlauer nutzen</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/functions_intro.html">Funktionen</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../functions/dreiecke.html">Funktionen schreiben</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions/function_handles.html">Function handles</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../debugging/debugging_intro.html">Debugging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../debugging/error_signs.html">Fehleranzeige</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debugging/analysing_code.html">Fehleranalyse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debugging/efficiency.html">Vektorisierung</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../AI/KI_intro.html">KI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../AI/Programmieren_mit_KI.html">Programmieren mit KI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AI/Debugging_mit_KI.html">Debugging mit KI</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datenverabeitung in Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../arrays_2/arrays_2_intro.html">Arrays II</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../arrays_2/arrayerstellung.html">Arrayerstellung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arrays_2/concatenating_arrays.html">Arrays zusammenfügen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arrays_2/reshaping_arrays.html">Arrays umformen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arrays_2/quiz.html">Quiz</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="visualisation_2_intro.html">Visualisierung II</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="advanced_2D_plots.html">Plots individuell gestalten</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Mehrfach-Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3D_plots.html">3D Plots</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../working_with_data/working_with_data_intro.html">Mit Daten arbeiten</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../working_with_data/organizing_data_in_table.html">Tabellen aufbauen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../working_with_data/organizing_data_in_table_2.html">Tabellen auslesen</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/content/chapter03_spezialisierung/visualisation_2/several_lines_one_plot.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Mehrfach-Plots</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-mit-mehrere-vektoren-als-eingabe">Plots mit mehrere Vektoren als Eingabe</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-mit-matrizen-als-eingabe">Plots mit Matrizen als Eingabe</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anpassung-der-achsen">Anpassung der Achsen</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="mehrfach-plots">
+<h1>Mehrfach-Plots<a class="headerlink" href="#mehrfach-plots" title="Link to this heading">#</a></h1>
+<p>Oft möchte man nicht nur einen einzelne Linie darstellen, sondern mehrere Kurven, Punktwolken oder sogar ganze Matrizen vergleichen. In diesem Kapitel lernen Sie, wie Sie mehrere Vektoren oder Matrizen gleichzeitig als Eingabe für Plots verwenden können – etwa um verschiedene Funktionen zu vergleichen oder Veränderungen über die Zeit oder Parameter hinweg sichtbar zu machen. Dabei geht es auch darum, wie Sie Ihre Daten sinnvoll strukturieren und optisch klar voneinander trennen.</p>
+<section id="plots-mit-mehrere-vektoren-als-eingabe">
+<h2>Plots mit mehrere Vektoren als Eingabe<a class="headerlink" href="#plots-mit-mehrere-vektoren-als-eingabe" title="Link to this heading">#</a></h2>
+<p>Um mehrere Linien in einem Plot darzustellen, kann <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code> mehrfach aufgerufen werden vor dem abschließenden <code class="docutils literal notranslate"><span class="pre">plt.show()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">)</span>   <span class="c1"># erste Linie</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>   <span class="c1"># zweite Linie</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alternativ können auch mehrere Linien in einem einzigen Funktionsaufruf kombiniert werden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>  <span class="c1"># beide Linien in einer Zeile</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-1-1 admonition">
+<p class="admonition-title">Aufgabe 1.1</p>
+<p>Erweitern Sie den Plot, sodass neben den deutschen Daten (Index 1) auch die Daten für die USA (Index 2) dargestellt werden.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Man kann einen zweiten <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code>-Befehl hinzufügen oder beide Linien in einem <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code>-Aufruf kombinieren.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Anteil erneuerbarer Energien in Deutschland und den USA seit 1990&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jahr&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Anteil erneuerbarer Energien (%)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Wenn Sie mehr als zwei Linien zeichnen möchten, fügen Sie einfach weitere <span class="math notranslate nohighlight">\(x,y\)</span>-Paare hinzu – entweder durch zusätzliche <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code>-Aufrufe oder als zusätzliche Argumente im selben Aufruf: <code class="docutils literal notranslate"><span class="pre">plt.plot(x,</span> <span class="pre">y1,</span> <span class="pre">x,</span> <span class="pre">y2,</span> <span class="pre">x,</span> <span class="pre">y3,</span> <span class="pre">...)</span></code>.</p>
+<div class="admonition-aufgabe-1-2 admonition">
+<p class="admonition-title">Aufgabe 1.2</p>
+<p>Erweitern Sie den Plot, sodass neben den deutschen und amerikanischen Daten, auch die Daten der restlichen drei Länder angezeigt werden (China, Norwegen und Brasilien).</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Nutzen Sie mehrere <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code>-Aufrufe oder einen einzigen Aufruf <code class="docutils literal notranslate"><span class="pre">plt.plot(x,</span> <span class="pre">y1,</span> <span class="pre">x,</span> <span class="pre">y2,</span> <span class="pre">x,</span> <span class="pre">y3,</span> <span class="pre">...)</span></code>.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Anteil erneuerbarer Energien seit 1990&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jahr&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Anteil erneuerbarer Energien (%)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Wenn Sie mehrere Linien gleichzeitig darstellen, kann der Plot schnell unübersichtlich wirken. Um die Daten besser unterscheidbar zu machen, empfiehlt es sich, für jede Linie passende Eigenschaften wie <code class="docutils literal notranslate"><span class="pre">label</span></code>, <code class="docutils literal notranslate"><span class="pre">color</span></code> und gegebenenfalls <code class="docutils literal notranslate"><span class="pre">linestyle</span></code> anzugeben:
+<code class="docutils literal notranslate"><span class="pre">plt.plot(x,</span> <span class="pre">y1,</span> <span class="pre">color='r',</span> <span class="pre">label='Wert</span> <span class="pre">1,</span> <span class="pre">x,</span> <span class="pre">y2,</span> <span class="pre">color='b',</span> <span class="pre">label='Wert</span> <span class="pre">2')</span></code>
+Durch den anschließenden Aufruf von <code class="docutils literal notranslate"><span class="pre">plt.legend()</span></code> wird eine Legende eingeblendet, die die Labels den Linien zuordnet.</p>
+<div class="admonition-aufgabe-1-3 admonition">
+<p class="admonition-title">Aufgabe 1.3</p>
+<p>Passen Sie den bestehenden Plot an, sodass jede Linie eine eigene Farbe und ein passendes Label bekommt. Verwenden Sie folgende Farbgebung:</p>
+<ul class="simple">
+<li><p>Deutschland: blau</p></li>
+<li><p>USA: rot</p></li>
+<li><p>China: grün</p></li>
+<li><p>Norwegen: orange</p></li>
+<li><p>Brasilien: lila</p></li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Nutzen Sie fünf <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code>-Befehle, jeweils mit <code class="docutils literal notranslate"><span class="pre">color</span></code> und <code class="docutils literal notranslate"><span class="pre">label</span></code>. Vergessen Sie <code class="docutils literal notranslate"><span class="pre">plt.legend()</span></code> nicht.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Deutschland&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;USA&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;China&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Norwegen&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Brasilien&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Anteil erneuerbarer Energien seit 1990&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jahr&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Anteil erneuerbarer Energien (%)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Wenn Sie in <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> keine Farbe explizit angeben, verwendet die Bibliothek automatisch Farben aus einer vordefinierten Farbpalette, dem sogenannten <strong>Color Cycle</strong>. Dieser Zyklus besteht standardmäßig aus zehn unterschiedlichen Farben, die in der Reihenfolge verwendet werden, in der Linien gezeichnet werden. Sobald mehr als zehn Linien dargestellt werden, beginnt der Zyklus von vorne, wodurch Farben wiederholt werden können.</p>
+<p>Diese automatische Farbvergabe eignet sich gut für schnelle Visualisierungen. Bei komplexeren Plots mit mehreren Linien kann es jedoch hilfreich sein, Farben und Beschriftungen explizit festzulegen, um die Lesbarkeit zu verbessern.</p>
+<p>Für detailliertere Informationen zur automatischen Farbvergabe und zur Anpassung des Color Cycles in matplotlib können Sie die offizielle Dokumentation konsultieren: <a href="https://matplotlib.org/stable/gallery/color/color_cycle_default.html">Colors in the default property cycle</a></p>
+</section>
+<section id="plots-mit-matrizen-als-eingabe">
+<h2>Plots mit Matrizen als Eingabe<a class="headerlink" href="#plots-mit-matrizen-als-eingabe" title="Link to this heading">#</a></h2>
+<p>In diesem Kapitel lernen Sie, wie Sie Matrizen direkt als Eingabe für die Funktion <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code> verwenden können. Dadurch lassen sich mehrere Datenreihen gleichzeitig und besonders effizient in einem einzigen Plot darstellen.</p>
+<p>Wir bleiben dabei bei dem bekannten Datensatz zum Anteil erneuerbarer Energien für die Länder Deutschland, USA, China, Norwegen und Brasilien, den Sie bereits im Kapitel <a class="reference internal" href="#../../chapter03_spezialisierung/visualization_2/advanced_2D_plots.ipynb"><span class="xref myst">Plots individuell gestalten</span></a> kennengelernt haben.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Datenquelle</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="c1"># Auswahlparameter</span>
+<span class="n">countries</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Germany&#39;</span><span class="p">,</span> <span class="s1">&#39;United States&#39;</span><span class="p">,</span> <span class="s1">&#39;China&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Brazil&#39;</span><span class="p">]</span>
+<span class="n">variable</span> <span class="o">=</span> <span class="s1">&#39;renewables_share_energy&#39;</span>
+
+<span class="c1"># Daten filtern und auf relevante Spalten reduzieren</span>
+<span class="n">df_filtered</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">countries</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1990</span><span class="p">)]</span>
+<span class="n">df_pivot</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">variable</span><span class="p">)</span>
+
+<span class="c1"># Nur vollständige Zeilen und relevante Länder</span>
+<span class="n">df_selected</span> <span class="o">=</span> <span class="n">df_pivot</span><span class="p">[</span><span class="n">countries</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Jahr als eigene Spalte</span>
+<span class="n">df_selected_with_years</span> <span class="o">=</span> <span class="n">df_selected</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_selected_with_years</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">df_selected</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="c1"># Umwandeln in NumPy-Array</span>
+<span class="n">data_array</span> <span class="o">=</span> <span class="n">df_selected_with_years</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Im Kapitel <a class="reference internal" href="#../../chapter03_spezialisierung/visualization_2/advanced_2D_plots.ipynb"><span class="xref myst">Plots individuell gestalten</span></a> haben Sie gelernt, wie man einzelne Vektoren gemeinsam in einem Plot visualisiert. Nun gehen wir einen Schritt weiter: Statt jede Datenreihe einzeln zu übergeben, können Sie ein 2D-<code class="docutils literal notranslate"><span class="pre">numpy</span></code>-Array direkt an <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code> übergeben.</p>
+<p><strong>Wichtig:</strong> Die Dimensionen müssen zueinander passen:</p>
+<ul class="simple">
+<li><p>Der erste Parameter (die <span class="math notranslate nohighlight">\(x\)</span>-Achse) muss ein Vektor mit der gleichen Länge wie die Anzahl der <strong>Zeilen</strong> des 2D-Arrays sein.</p></li>
+<li><p>Das 2D-Array enthält dann <strong>pro Spalte</strong> eine eigene Datenreihe, die automatisch als separate Kurve geplottet wird.</p></li>
+</ul>
+<p>In diesem Beispiel ist die Eingabe falsch: Der Vektor <code class="docutils literal notranslate"><span class="pre">x</span></code> hat die Länge 100, aber <code class="docutils literal notranslate"><span class="pre">y</span></code> besitzt nur 2 Zeilen und 100 Spalten.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># Länge 100</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)])</span>  <span class="c1"># 100 Spalten, 2 Zeilen</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sinus- und Cosinusfunktionen&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Nun korrigieren wir den Fehler: <code class="docutils literal notranslate"><span class="pre">y</span></code> hat 100 Zeilen und 2 Spalten – passend zur Länge von <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># Länge 100</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)])</span>  <span class="c1"># 2 Spalten, 100 Zeilen</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sinus- und Cosinusfunktionen&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Mit dieser Methode lassen sich also mehrere Kurven auf einmal zeichnen, indem Sie nur zwei Argumente übergeben: den gemeinsamen <span class="math notranslate nohighlight">\(x\)</span>-Vektor und die Datenmatrix für die <span class="math notranslate nohighlight">\(y\)</span>-Werte.</p>
+<div class="admonition-aufgabe-2-1 admonition">
+<p class="admonition-title">Aufgabe 2.1</p>
+<p>Erstellen Sie einen Linienplot, der für jedes Land in der Matrix den Anteil erneuerbarer Energien ab dem Jahr 1990 zeigt. Nutzen Sie hierfür die gesamte <code class="docutils literal notranslate"><span class="pre">numpy</span></code>-Matrix als Eingabe für <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code>. Eine Legende ist in dieser Aufgabe nicht erforderlich.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Nutzen Sie die erste bis fünfte Spalte von <code class="docutils literal notranslate"><span class="pre">data_array</span></code> als Matrix-Eingabe für <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code>.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Jahre als x-Achse</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Daten für jedes Land als y-Achse</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span>
+
+<span class="c1"># Plotten aller Länder in einem Plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Anteil erneuerbarer Energien seit 1990&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jahr&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Anteil (%)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Wenn Sie eine ganze Matrix an <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code> übergeben, wird für jede Spalte automatisch eine eigene Linie gezeichnet. Die Beschriftung erfolgt anschließend über <code class="docutils literal notranslate"><span class="pre">plt.legend()</span></code>, indem Sie eine Liste mit genauso vielen Einträgen wie Spalten in der Matrix übergeben. Einzelne <code class="docutils literal notranslate"><span class="pre">label</span></code>-Parameter beim Aufruf von <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code> funktionieren in diesem Fall nicht.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>  
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;sin(x)&#39;</span><span class="p">,</span> <span class="s1">&#39;cos(x)&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sinus- und Cosinusfunktionen&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition-aufgabe-2-2 admonition">
+<p class="admonition-title">Aufgabe 2.2</p>
+<p>Erstellen Sie erneut den Plot aus Aufgabe 1.1. Fügen Sie diesem eine Legende hinzu, die die einzelnen Länder korrekt beschriftet.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Verwenden Sie die Methode <code class="docutils literal notranslate"><span class="pre">plt.legend()</span></code> und übergeben Sie die Ländernamen in der richtigen Reihenfolge als Liste.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Jahre als x-Achse</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Daten für jedes Land als y-Achse</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span>
+
+<span class="c1"># Plotten aller Länder in einem Plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Anteil erneuerbarer Energien seit 1990&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jahr&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Anteil (%)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Deutschland&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;China&#39;</span><span class="p">,</span> <span class="s1">&#39;Norwegen&#39;</span><span class="p">,</span> <span class="s1">&#39;Brasilien&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Auch bei der Übergabe einer Matrix an <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code> können Sie Eigenschaften wie <code class="docutils literal notranslate"><span class="pre">color</span></code>, <code class="docutils literal notranslate"><span class="pre">linestyle</span></code> oder <code class="docutils literal notranslate"><span class="pre">marker</span></code> direkt im Funktionsaufruf festlegen – genau wie Sie es in <a class="reference internal" href="#../../chapter03_spezialisierung/visualization_2/advanced_2D_plots.ipynb"><span class="xref myst">Plots individuell gestalten</span></a> kennengelernt haben.</p>
+<p>Dazu übergeben Sie die gewünschten Eigenschaften einfach als benannte Argumente im Format <code class="docutils literal notranslate"><span class="pre">Property=Value</span></code>, zum Beispiel: <code class="docutils literal notranslate"><span class="pre">plt.plot(x,</span> <span class="pre">y,</span> <span class="pre">color='green',</span> <span class="pre">linestyle='-')</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)])</span>
+
+<span class="n">lines</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Linien anpassen&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;sin(x)&#39;</span><span class="p">,</span> <span class="s1">&#39;cos(x)&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition-aufgabe-2-3 admonition">
+<p class="admonition-title">Aufgabe 2.3</p>
+<p>Erstellen Sie erneut den Plot aus Aufgabe 1.2. Verwenden Sie runde Marker und eine gestrichelte Linie für jede Kurve.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Verwenden Sie <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code> mit einer Linienbeschreibung, die <code class="docutils literal notranslate"><span class="pre">'o'</span></code> für runde Marker und <code class="docutils literal notranslate"><span class="pre">'--'</span></code> für eine gestrichelte Linie kombiniert.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Jahre als x-Achse</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Daten für jedes Land als y-Achse</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span>
+
+<span class="c1"># Plotten aller Länder mit Markern und gestrichelten Linien</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Anteil erneuerbarer Energien seit 1990&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jahr&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Anteil (%)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Deutschland&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;China&#39;</span><span class="p">,</span> <span class="s1">&#39;Norwegen&#39;</span><span class="p">,</span> <span class="s1">&#39;Brasilien&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Möchte man die erzeugten Linien gezielt gestalten – also z. B. unterschiedliche <code class="docutils literal notranslate"><span class="pre">color</span></code>, <code class="docutils literal notranslate"><span class="pre">linestyle</span></code> oder <code class="docutils literal notranslate"><span class="pre">marker</span></code> verwenden –, ist etwas mehr Kontrolle nötig als beim Plotten einzelner Vektoren.</p>
+<p>Dazu speichern Sie zunächst das Ergebnis des Funktionsaufrufs in einer Variable <code class="docutils literal notranslate"><span class="pre">lines</span> <span class="pre">=</span> <span class="pre">plt.plot(x,</span> <span class="pre">y)</span></code>. Die Variable <code class="docutils literal notranslate"><span class="pre">lines</span></code> ist eine Liste von Linienobjekten (<code class="docutils literal notranslate"><span class="pre">Line2D</span></code>), wobei jedes Objekt einer Spalte der Datenmatrix <code class="docutils literal notranslate"><span class="pre">y</span></code> entspricht. Die Reihenfolge der Objekte in <code class="docutils literal notranslate"><span class="pre">lines</span></code> entspricht genau der Reihenfolge der Spalten in <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+<p>Diese Objekte lassen sich anschließend einzeln mit der Methode <code class="docutils literal notranslate"><span class="pre">.set_&lt;Eigenschaft&gt;()</span></code> anpassen.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)])</span>
+
+<span class="n">lines</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="c1"># Erste Linie: rot, gestrichelt, Marker &#39;o&#39;</span>
+<span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_linestyle</span><span class="p">(</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_marker</span><span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Zweite Linie: blau, gepunktet, Marker &#39;s&#39;</span>
+<span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_linestyle</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_marker</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Individuelle Gestaltung von Linien&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;sin(x)&#39;</span><span class="p">,</span> <span class="s1">&#39;cos(x)&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition-aufgabe-2-4 admonition">
+<p class="admonition-title">Aufgabe 2.4</p>
+<p>Erstellen Sie erneut den Plot aus Aufgabe 1.2. Nur für Deutschland und Norwegen sollen nun runde Marker und gestrichelte Linien verwendet werden.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Verwenden Sie die Liste der Linienobjekte, die <code class="docutils literal notranslate"><span class="pre">plt.plot(x,</span> <span class="pre">y)</span></code> zurückgibt, um einzelne Linien individuell mit <code class="docutils literal notranslate"><span class="pre">.set_linestyle()</span></code> und <code class="docutils literal notranslate"><span class="pre">.set_marker()</span></code> anzupassen.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Jahre als x-Achse</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Daten für jedes Land als y-Achse</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span>
+
+<span class="n">lines</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Deutschland ist die erste Linie (Index 0), Norwegen die vierte (Index 3)</span>
+<span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_linestyle</span><span class="p">(</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_marker</span><span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+
+<span class="n">lines</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_linestyle</span><span class="p">(</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">lines</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_marker</span><span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Anteil erneuerbarer Energien seit 1990&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jahr&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Anteil (%)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Deutschland&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;China&#39;</span><span class="p">,</span> <span class="s1">&#39;Norwegen&#39;</span><span class="p">,</span> <span class="s1">&#39;Brasilien&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-aufgabe-2-5 admonition">
+<p class="admonition-title">Aufgabe 2.5</p>
+<p>Erstellen Sie erneut den Plot aus Aufgabe 1.2. Ergänzen Sie eine weitere Linie, die den durchschnittlichen Anteil über alle Länder hinweg anzeigt. Gestalten Sie diese Durchschnittslinie deutlich sichtbar – zum Beispiel durch eine gestrichelte Linie mit erhöhter Strichstärke.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Den Mittelwert über alle Länder berechnen Sie mit <code class="docutils literal notranslate"><span class="pre">np.mean()</span></code> und dem Attribut <code class="docutils literal notranslate"><span class="pre">axis</span></code>. Die zusätzliche Linie kann separat geplottet und anschließend hervorgehoben werden.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Jahre als x-Achse</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Daten für jedes Land als y-Achse</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span>
+
+<span class="c1"># Plotten der einzelnen Länder</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Mittelwert über alle Länder (zeilenweise)</span>
+<span class="n">mean_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Durchschnittslinie hinzufügen</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mean_values</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Durchschnitt&#39;</span><span class="p">)</span>
+
+<span class="c1"># Achsenbeschriftungen und Legende</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Anteil erneuerbarer Energien seit 1990&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jahr&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Anteil (%)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Deutschland&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;China&#39;</span><span class="p">,</span> <span class="s1">&#39;Norwegen&#39;</span><span class="p">,</span> <span class="s1">&#39;Brasilien&#39;</span><span class="p">,</span> <span class="s1">&#39;Durchschnitt&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Mit <strong>Slicing</strong> können Sie aus einem <code class="docutils literal notranslate"><span class="pre">numpy</span></code>-Array gezielt Teilbereiche extrahieren. Die Syntax <code class="docutils literal notranslate"><span class="pre">array[start:stop:step]</span></code> bedeutet:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">start</span></code>: Index, ab dem geschnitten wird (inklusive)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stop</span></code>: Index, bis zu dem geschnitten wird (exklusive)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">step</span></code>: Schrittweite zwischen den Indizes</p></li>
+</ul>
+<p>Im folgenden Beispiel plotten wir nur jede 10. Stelle des ursprünglichen Sinus- und Cosinusverlaufs.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)])</span>
+
+<span class="c1"># Nur jede fünfte Stelle verwenden</span>
+<span class="n">x_sliced</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">y_sliced</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="mi">10</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_sliced</span><span class="p">,</span> <span class="n">y_sliced</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;sin(x)&#39;</span><span class="p">,</span> <span class="s1">&#39;cos(x)&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sinus- und Cosinusfunktionen (jede 5. Stelle)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition-aufgabe-2-6 admonition">
+<p class="admonition-title">Aufgabe 2.6</p>
+<p>Erstellen Sie erneut den Plot aus Aufgabe 1.2, jedoch nur mit den Messdaten im Fünf-Jahres-Abstand. Fügen Sie außerdem eine Linie hinzu, die den durchschnittlichen Anteil erneuerbarer Energien aller Länder zusammenfasst, und heben Sie diese hervor.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Verwenden Sie Slicing, um nur jede fünfte Zeile der Daten darzustellen. Die Durchschnittswerte lassen sich mit <code class="docutils literal notranslate"><span class="pre">np.mean()</span></code> berechnen.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Jahre als x-Achse</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Daten für jedes Land als y-Achse</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data_array</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span>
+
+<span class="c1"># Daten alle 5 Jahre</span>
+<span class="n">x_5</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">y_5</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span>
+
+<span class="c1"># Durchschnitt berechnen</span>
+<span class="n">mean_5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_5</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Plotten der Datenpunkte im 5-Jahres-Abstand</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_5</span><span class="p">,</span> <span class="n">y_5</span><span class="p">,</span> <span class="s1">&#39;x-&#39;</span><span class="p">)</span>  <span class="c1"># &lt;-- wichtig: y_5 transponieren</span>
+
+<span class="c1"># Durchschnittslinie hinzufügen</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_5</span><span class="p">,</span> <span class="n">mean_5</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Anteil erneuerbarer Energien (alle 5 Jahre)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jahr&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Anteil (%)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Deutschland&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;China&#39;</span><span class="p">,</span> <span class="s1">&#39;Norwegen&#39;</span><span class="p">,</span> <span class="s1">&#39;Brasilien&#39;</span><span class="p">,</span> <span class="s1">&#39;Durchschnitt&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<br>
+</section>
+<section id="anpassung-der-achsen">
+<h2>Anpassung der Achsen<a class="headerlink" href="#anpassung-der-achsen" title="Link to this heading">#</a></h2>
+<p>Im vorherigen Abschnitt haben wir den Anteil erneuerbarer Energien am gesamten Energieverbrauch für ausgewählte Länder betrachtet. Nun erweitern wir unsere Analyse um eine weitere wichtige Kennzahl: den <strong>Stromverbrauch pro Kopf</strong>. Dieser Wert beschreibt, wie viel elektrische Energie durchschnittlich von einer Person in einem Land verbraucht wird. Er gilt als Indikator für den Entwicklungsstand, den Industrialisierungsgrad sowie den Energiebedarf einer Gesellschaft.</p>
+<p>Der folgende Code lädt die Daten zum Stromverbrauch pro Kopf seit 1990 für <strong>Deutschland</strong>, die <strong>USA</strong>, <strong>China</strong>, <strong>Norwegen</strong> und <strong>Brasilien</strong>. Die Daten werden wie zuvor in ein <code class="docutils literal notranslate"><span class="pre">numpy</span></code>-Array mit dem Namen <code class="docutils literal notranslate"><span class="pre">data_array_demand</span></code> überführt, sodass sie direkt weiterverarbeitet und visualisiert werden können.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Datenquelle</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="c1"># Auswahlparameter</span>
+<span class="n">countries</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Germany&#39;</span><span class="p">,</span> <span class="s1">&#39;United States&#39;</span><span class="p">,</span> <span class="s1">&#39;China&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Brazil&#39;</span><span class="p">]</span>
+<span class="n">variable</span> <span class="o">=</span> <span class="s1">&#39;electricity_demand_per_capita&#39;</span>
+
+<span class="c1"># Daten filtern und auf relevante Spalten reduzieren</span>
+<span class="n">df_filtered</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">countries</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1990</span><span class="p">)]</span>
+<span class="n">df_pivot</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">variable</span><span class="p">)</span>
+
+<span class="c1"># Länder in definierter Reihenfolge sicherstellen (für spätere Achsenzuweisung im Plot)</span>
+<span class="n">df_selected</span> <span class="o">=</span> <span class="n">df_pivot</span><span class="p">[</span><span class="n">countries</span><span class="p">]</span>
+
+<span class="c1"># Jahr als eigene Spalte einfügen</span>
+<span class="n">df_selected_with_years</span> <span class="o">=</span> <span class="n">df_selected</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_selected_with_years</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">df_selected</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="c1"># Umwandeln in NumPy-Array</span>
+<span class="n">data_array_demand</span> <span class="o">=</span> <span class="n">df_selected_with_years</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Zur Erinnerung: Der Aufbau des <code class="docutils literal notranslate"><span class="pre">numpy</span></code>-Arrays ist wie folgt strukturiert:</p>
+<ul class="simple">
+<li><p><strong>Spalte 0</strong>: Jahr</p></li>
+<li><p><strong>Spalten 1–5</strong>: Stromverbrauch pro Kopf in Kilowattstunden (kWh) für <strong>Deutschland</strong>, <strong>USA</strong>, <strong>China</strong>, <strong>Norwegen</strong> und <strong>Brasilien</strong> (in genau dieser Reihenfolge)</p></li>
+</ul>
+<div class="admonition-aufgabe-3-1 admonition">
+<p class="admonition-title">Aufgabe 3.1</p>
+<p>Erstellen Sie einen Linienplot, der den Stromverbrauch pro Kopf für alle fünf Länder im Zeitverlauf zeigt.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Verwenden Sie dieselbe Struktur wie beim Plot für den Anteil erneuerbarer Energien. Nutzen Sie <code class="docutils literal notranslate"><span class="pre">plt.plot</span></code> für jedes Land und kennzeichnen Sie jede Linie mit einer Farbe und einem Label. Die Daten liegen bereits in <code class="docutils literal notranslate"><span class="pre">data_array_demand</span></code> vor.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Deutschland&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;USA&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;China&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Norwegen&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Brasilien&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Stromverbrauch pro Kopf seit 1990&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jahr&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Stromverbrauch pro Kopf (kWh)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Wie Sie sehen, weist der Plot zum Stromverbrauch pro Kopf einige Lücken auf. Diese entstehen dadurch, dass für die <strong>USA</strong>, <strong>China</strong> und <strong>Brasilien</strong> in den 1990er-Jahren keine Daten vorliegen.</p>
+<p>Standardmäßig legt <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> die Achsengrenzen automatisch so fest, dass alle vorhandenen Daten möglichst gut dargestellt werden. Möchte man sich jedoch gezielt bestimmte Zeiträume anschauen oder zwischen mehreren Plots eine einheitliche Darstellung erreichen, ist es sinnvoll, die Achsen <strong>manuell anzupassen</strong>.</p>
+<p>Mit dem Befehl <code class="docutils literal notranslate"><span class="pre">plt.axis()</span></code> lässt sich die aktuelle Achsenskalierung abfragen oder gezielt setzen. Wird der Befehl <strong>ohne Argumente</strong> aufgerufen, gibt er die aktuell verwendeten Grenzen des zuletzt erzeugten Plots zurück:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2005</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">2015</span><span class="p">,</span> <span class="mi">2020</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3000</span><span class="p">,</span> <span class="mi">3500</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">7000</span><span class="p">,</span> <span class="mi">8500</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Beispieldaten&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>  <span class="c1"># Zeichnung erzwingen</span>
+<span class="n">limits</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">()</span>  <span class="c1"># Achsengrenzen abfragen</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Aktuelle Achsengrenzen:&quot;</span><span class="p">,</span> <span class="n">limits</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> <span class="c1"># Plot anzeigen</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dabei ist Folgendes zu beachten:<br />
+Damit <code class="docutils literal notranslate"><span class="pre">plt.axis()</span></code> die korrekten Achsengrenzen zurückgibt, muss der Plot bereits vollständig gezeichnet worden sein. In vielen Umgebungen – insbesondere in Jupyter Notebooks – wird die Zeichnung jedoch erst durch den Befehl <code class="docutils literal notranslate"><span class="pre">plt.show()</span></code> ausgelöst. <strong>Nach</strong> diesem Aufruf ist der Zugriff auf die Achsengrenzen allerdings nicht mehr zuverlässig möglich. Verwenden Sie daher <code class="docutils literal notranslate"><span class="pre">plt.draw()</span></code>, um das Zeichnen <strong>vorab zu erzwingen</strong>. Erst danach gibt <code class="docutils literal notranslate"><span class="pre">plt.axis()</span></code> die tatsächlich verwendeten Grenzen zurück.Ein Aufruf von <code class="docutils literal notranslate"><span class="pre">plt.axis()</span></code> <strong>ohne Argumente</strong> gibt die aktuellen Achsengrenzen in folgender Reihenfolge zurück: <code class="docutils literal notranslate"><span class="pre">[x_min,</span> <span class="pre">x_max,</span> <span class="pre">y_min,</span> <span class="pre">y_max]</span></code>. Das bedeutet: Die ersten beiden Werte stehen für die Grenzen der <span class="math notranslate nohighlight">\(x\)</span>-Achse, die letzten beiden für die <span class="math notranslate nohighlight">\(y\)</span>-Achse.</p>
+<p>Wenn Sie die Achsengrenzen manuell festlegen möchten, übergeben Sie dem Befehl <code class="docutils literal notranslate"><span class="pre">plt.axis()</span></code> genau eine solche Liste: <code class="docutils literal notranslate"><span class="pre">plt.axis([x_min,</span> <span class="pre">x_max,</span> <span class="pre">y_min,</span> <span class="pre">y_max])</span></code>.</p>
+<div class="admonition-aufgabe-3-2 admonition">
+<p class="admonition-title">Aufgabe 3.2</p>
+<p>Passen Sie die Achsendarstellung des obigen Plots so an, dass nur Daten ab dem Jahr 2000 auf der <span class="math notranslate nohighlight">\(x\)</span>-Achse sichtbar sind. Die übrigen Achsengrenzen sollen unverändert bleiben.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Der Befehl <code class="docutils literal notranslate"><span class="pre">plt.axis([x_min,</span> <span class="pre">x_max,</span> <span class="pre">y_min,</span> <span class="pre">y_max])</span></code> passt die Achsengrenzen manuell am. Um nur einen Grenzwert zu ändern, kann man die anderen Grenzen zunächst mit <code class="docutils literal notranslate"><span class="pre">plt.axis()</span></code> ermitteln und anschließend wiederverwenden.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot erzeugen</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Deutschland&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;USA&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;China&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Norwegen&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Brasilien&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Stromverbrauch pro Kopf seit 2000&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jahr&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Stromverbrauch pro Kopf (kWh)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Plot vorbereiten und Achsengrenzen abfragen</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="n">limits</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">()</span>
+
+<span class="c1"># Neue Grenzen setzen: nur x_min auf 2000 ändern</span>
+<span class="n">new_limits</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2000</span><span class="p">,</span> <span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">limits</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">limits</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="n">new_limits</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-aufgabe-3-3 admonition">
+<p class="admonition-title">Aufgabe 3.3</p>
+<p>Passen Sie die Achsendarstellung des obigen Plots so an, dass nur Daten ab dem Jahr 2000 angezeigt werden. Die übrigen Achsengrenzen sollen automatisch so gewählt werden, dass sie dem minimalen und maximalen Wertebereich der Daten entsprechen.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Mit dem Befehl <code class="docutils literal notranslate"><span class="pre">plt.axis([x_min,</span> <span class="pre">x_max,</span> <span class="pre">y_min,</span> <span class="pre">y_max])</span></code> können Sie die Achsengrenzen anpassen. Die Werte <code class="docutils literal notranslate"><span class="pre">x_max</span></code>, <code class="docutils literal notranslate"><span class="pre">y_min</span></code> und <code class="docutils literal notranslate"><span class="pre">y_max</span></code> lassen sich mit <code class="docutils literal notranslate"><span class="pre">.max()</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">.min()</span></code> von den relevanten Daten-Spalten ermitteln. Achten Sie bei der Betimmung der Minima/Maxima darauf, dass Sie nur die Daten untersuchen, die vorliegen.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x_min</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">x_max</span> <span class="o">=</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">y_min</span> <span class="o">=</span> <span class="n">data_array_demand</span><span class="p">[</span><span class="mi">10</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">y_max</span> <span class="o">=</span> <span class="n">data_array_demand</span><span class="p">[</span><span class="mi">10</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Deutschland&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;USA&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;China&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Norwegen&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Brasilien&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Stromverbrauch pro Kopf seit 2000&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jahr&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Stromverbrauch pro Kopf (kWh)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Möchte man die Achsengrenzen so setzen, dass sie genau dem Datenbereich entsprechen, verwendet man den Befehl <code class="docutils literal notranslate"><span class="pre">plt.axis('tight')</span></code></p>
+<div class="admonition-aufgabe-3-4 admonition">
+<p class="admonition-title">Aufgabe 3.4</p>
+<p>Passen Sie die Achsengrenzen des Plots so an, dass sie genau dem Bereich der vorhandenen Daten entsprechen.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Nutzen Sie den Befehl <code class="docutils literal notranslate"><span class="pre">plt.axis('tight')</span></code>.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Deutschland&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;USA&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;China&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Norwegen&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_array_demand</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Brasilien&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Stromverbrauch pro Kopf&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jahr&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Stromverbrauch pro Kopf (kWh)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>  <span class="c1"># Hier die Achsen genau an die Daten anpassen</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jaheieck/pythonkurs-test",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content\chapter03_spezialisierung\visualisation_2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="advanced_2D_plots.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Plots individuell gestalten</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="3D_plots.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">3D Plots</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-mit-mehrere-vektoren-als-eingabe">Plots mit mehrere Vektoren als Eingabe</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-mit-matrizen-als-eingabe">Plots mit Matrizen als Eingabe</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anpassung-der-achsen">Anpassung der Achsen</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jacob Heieck, Alena Ulke
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

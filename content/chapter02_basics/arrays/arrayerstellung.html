@@ -1,0 +1,1056 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Arrayerstellung &#8212; Python-Programmierkurs</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b8171b4a" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/chapter02_basics/arrays/arrayerstellung';</script>
+    <link rel="canonical" href="/pythonkurs-test/content/chapter02_basics/arrays/arrayerstellung.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Indizierung von Arrays" href="indizierung.html" />
+    <link rel="prev" title="Vektoren und Matrizen" href="array_intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python-Programmierkurs</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Minimal Working Example</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../notebooks.html">Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../markdown-notebooks.html">Markdown Notebook</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Einführung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/vorwort.html">Vorwort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/kursstruktur.html">Struktur des Kurses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/installationsguide.html">Infos zu Python</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/funktionsweise_jupyter_book.html">Wie nutzt man dieses Jupyterbook?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter01_einfuehrung/funktionsweise_jupyter_notebook.html">Wie nutzt man Jupyter-Notebooks?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Grundlagen von Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="array_intro.html">Arrays</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Arrayerstellung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indizierung.html">Indizierung von Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rechnen_mit_arrays.html">Rechnen mit Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logische_arrays.html">Logische Indizierung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quiz.html">Quiz</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python schlauer nutzen</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter03_spezialisierung/functions/functions_intro.html">Funktionen</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/functions/dreiecke.html">Funktionen schreiben</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/functions/function_handles.html">Function handles</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter03_spezialisierung/debugging/debugging_intro.html">Debugging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/debugging/error_signs.html">Fehleranzeige</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/debugging/analysing_code.html">Fehleranalyse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/debugging/efficiency.html">Vektorisierung</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter03_spezialisierung/AI/KI_intro.html">KI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/AI/Programmieren_mit_KI.html">Programmieren mit KI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/AI/Debugging_mit_KI.html">Debugging mit KI</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datenverabeitung in Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter03_spezialisierung/arrays_2/arrays_2_intro.html">Arrays II</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/arrays_2/arrayerstellung.html">Arrayerstellung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/arrays_2/concatenating_arrays.html">Arrays zusammenfügen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/arrays_2/reshaping_arrays.html">Arrays umformen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/arrays_2/quiz.html">Quiz</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter03_spezialisierung/visualisation_2/visualisation_2_intro.html">Visualisierung II</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/visualisation_2/advanced_2D_plots.html">Plots individuell gestalten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/visualisation_2/several_lines_one_plot.html">Mehrfach-Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/visualisation_2/3D_plots.html">3D Plots</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter03_spezialisierung/working_with_data/working_with_data_intro.html">Mit Daten arbeiten</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/working_with_data/organizing_data_in_table.html">Tabellen aufbauen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter03_spezialisierung/working_with_data/organizing_data_in_table_2.html">Tabellen auslesen</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/content/chapter02_basics/arrays/arrayerstellung.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Arrayerstellung</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manuelle-arrayerstellung">Manuelle Arrayerstellung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vektoren-mit-werten-in-gleichmaszigen-abstanden">Vektoren mit Werten in gleichmäßigen Abständen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrayerstellung-mittels-funktionen">Arrayerstellung mittels Funktionen</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="arrayerstellung">
+<h1>Arrayerstellung<a class="headerlink" href="#arrayerstellung" title="Link to this heading">#</a></h1>
+<p>Ein <code class="docutils literal notranslate"><span class="pre">numpy</span></code> Array können Sie sich am einfachsten wie ein Vektor oder eine Matrix vorstellen. Es zeichnet sich durch drei Kernkenngrößen aus: die Dimension, die Größe sowie die Einträge des Arrays.</p>
+<p><strong>Bild</strong></p>
+<p>Die <strong>Dimension</strong> eines Arrays entspricht der Anzahl der Indizes, die benötigt werden, um ein Element zu adressieren. Beispielsweise kann ein eindimensionales Array als ein Vektor und ein zweidimensionales als Matrix interpretiert werden.</p>
+<p>Die <strong>Größe</strong> eines Arrays (engl. <em>shape</em>) wird durch ein Tupel <span class="math notranslate nohighlight">\((n_1, n_2, \dots, n_{\mathrm{dim}})\)</span> charakterisiert, wobei <span class="math notranslate nohighlight">\(n_i\)</span> die Anzahl der Einträge der <span class="math notranslate nohighlight">\(i\)</span>-ten Dimension entspricht.
+Eindimensionale Arras haben die Größe oder Länge <span class="math notranslate nohighlight">\(n\)</span> und zweidimensionale die Größe <span class="math notranslate nohighlight">\((m, n)\)</span>, was <span class="math notranslate nohighlight">\(m\)</span> Zeilen und <span class="math notranslate nohighlight">\(n\)</span> Spalten entspricht.</p>
+<section id="manuelle-arrayerstellung">
+<h2>Manuelle Arrayerstellung<a class="headerlink" href="#manuelle-arrayerstellung" title="Link to this heading">#</a></h2>
+<p>Sie können ein eindimensionales <code class="docutils literal notranslate"><span class="pre">numpy</span></code> Array erstellen, in dem Sie dessen Einträge in einer Liste (gekennzeichent durch eckige Klammern <code class="docutils literal notranslate"><span class="pre">[]</span></code>) zusammenfassen und der Funktion <code class="docutils literal notranslate"><span class="pre">np.array</span></code> übergeben:</p>
+<div class="cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Einbinden des Pakets numpy unter dem Alias &#39;np&#39;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span> <span class="c1"># erstellt ein Array mit Einträgen 0 und 4</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-1-1 admonition">
+<p class="admonition-title">Aufgabe 1.1</p>
+<p>Erstellen Sie einen Vektor mit dem Namen <code class="docutils literal notranslate"><span class="pre">y</span></code> und den drei Elementen <span class="math notranslate nohighlight">\(3\)</span>, <span class="math notranslate nohighlight">\(7\)</span> und <span class="math notranslate nohighlight">\(9\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Fassen Sie die Werte <span class="math notranslate nohighlight">\(3\)</span>, <span class="math notranslate nohighlight">\(7\)</span> und <span class="math notranslate nohighlight">\(9\)</span> mittels eckiger Klammern (<code class="docutils literal notranslate"><span class="pre">[]</span></code>) zusammen und nutzen Sie die Funktion <code class="docutils literal notranslate"><span class="pre">np.array</span></code>.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<p>Auch wenn ein eindimensionales <code class="docutils literal notranslate"><span class="pre">numpy</span></code> Array als Vektor interpretiert werden kann, ist es in Python weder ein Zeilen- noch ein Spaltenvektoren.
+In dem Sinne sind eindimensionale Arrays Objekte, welche Zahlen in einer festen Reihenfolge speichern.
+Im folgenden werden wir sie dennoch <em>Vektoren</em> nennen.</p>
+<p>Sie können eckige Klammern verschachteln und durch Kommata trennen, um ein zweidimensionales <code class="docutils literal notranslate"><span class="pre">numpy</span></code> Array bzw. eine Matrix zu erstellen. Dabei geben Sie die Elemente Zeile für Zeile ein. Jede Zeile wird durch eckige Klammern abgegrenzt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># erste Zeile von A: [1, 2, 3]</span>
+<span class="c1"># zweite Zeile von A: [4, 5, 6]</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-1-2 admonition">
+<p class="admonition-title">Aufgabe 1.2</p>
+<p>Erstellen Sie eine <span class="math notranslate nohighlight">\((2 \times 3)\)</span> Matrix mit dem Namen <code class="docutils literal notranslate"><span class="pre">A_23</span></code> und diesen Werten:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{pmatrix} 
+        4 &amp; 3 &amp; 2 \\
+        6 &amp; 7 &amp; 8
+    \end{pmatrix}
+\end{split}\]</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A_23</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-aufgabe-1-3 admonition">
+<p class="admonition-title">Aufgabe 1.3</p>
+<p>Erstellen Sie eine <span class="math notranslate nohighlight">\((4 \times 2)\)</span> Matrix mit dem Namen <code class="docutils literal notranslate"><span class="pre">A_42</span></code> und diesen Werten:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{pmatrix} 
+        -1 &amp;0 \\
+        -7 &amp; 10 \\
+        2 &amp; 4.5 \\
+        3 &amp; -5
+    \end{pmatrix}
+\end{split}\]</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A_42</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-aufgabe-1-4 admonition">
+<p class="admonition-title">Aufgabe 1.4</p>
+<p>Erstellen Sie eine <span class="math notranslate nohighlight">\((1 \times 2)\)</span> Matrix mit dem Namen <code class="docutils literal notranslate"><span class="pre">A_zeile</span></code> und diesen Werten:</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{pmatrix} 
+        5 &amp; 10 
+    \end{pmatrix}
+\]</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">A_zeile</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># sollte (1, 2) liefern</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A_zeile</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-aufgabe-1-5 admonition">
+<p class="admonition-title">Aufgabe 1.5</p>
+<p>Erstellen Sie eine <span class="math notranslate nohighlight">\((3 \times 1)\)</span> Matrix mit dem Namen <code class="docutils literal notranslate"><span class="pre">A_spalte</span></code> und diesen Werten:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{pmatrix} 
+        3 \\ 6 \\ -2
+    \end{pmatrix}
+\end{split}\]</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">A_spalte</span><span class="p">)</span> <span class="c1"># sollte (3, 1) liefern</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A_spalte</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<br>
+<p>Innerhalb der eckigen Klammern können Sie auch Berechnungen durchführen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">),</span> <span class="mi">5</span><span class="o">**</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-1-6 admonition">
+<p class="admonition-title">Aufgabe 1.6</p>
+<p>Erstellen Sie einen Vektor mit dem Namen <code class="docutils literal notranslate"><span class="pre">y</span></code>, der <code class="docutils literal notranslate"><span class="pre">np.sqrt(49)</span></code> (<span class="math notranslate nohighlight">\(\sqrt{49}\)</span>) als erstes Element, <code class="docutils literal notranslate"><span class="pre">np.pi**2</span></code> (<span class="math notranslate nohighlight">\(\pi^2\)</span>) als zweites Element und <code class="docutils literal notranslate"><span class="pre">np.sin(4)</span></code> als drittes Element enthält.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">49</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<br>
+</section>
+<section id="vektoren-mit-werten-in-gleichmaszigen-abstanden">
+<h2>Vektoren mit Werten in gleichmäßigen Abständen<a class="headerlink" href="#vektoren-mit-werten-in-gleichmaszigen-abstanden" title="Link to this heading">#</a></h2>
+<p>In der Numerik und auch beim Programmieren (in Python) allgemein, benötigen Sie häufig Vektoren, dessen aufeinanderfolgenden Einträge immer die gleiche Differenz haben, wie zum Beispiel bei dem Vektor <code class="docutils literal notranslate"><span class="pre">x</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-2-1 admonition">
+<p class="admonition-title">Aufgabe 2.1</p>
+<p>Definieren Sie einen Vektor mit dem Namen <code class="docutils literal notranslate"><span class="pre">y</span></code>, der die Werte <span class="math notranslate nohighlight">\(10\)</span>, <span class="math notranslate nohighlight">\(11\)</span> und <span class="math notranslate nohighlight">\(12\)</span> in der genau dieser Reihenfolge enthält.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Nutzen Sie den Befehl <code class="docutils literal notranslate"><span class="pre">np.array</span></code> und fassen Sie die Elemente des Vektors in eckige Klammern zusammen.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<p>Bei langen Vektoren ist das manuelle Eingeben der einzelnen Werte äußerst unpraktisch. Eine schnellere Alternative zum Erstellen von Vektoren mit gleichmäßigem Abstand zwischen den Werten bietet die Funktion <code class="docutils literal notranslate"><span class="pre">np.arange</span></code> bei der lediglich der Start- und Endwert angegeben werden müssen:</p>
+<p><code class="docutils literal notranslate"><span class="pre">np.arange(startwert,</span> <span class="pre">endwert)</span></code></p>
+<p>Der Endwert ist allerdings <strong>nicht</strong> enthalten, das heißt <code class="docutils literal notranslate"><span class="pre">np.arange</span></code> erzeugt einen Wertebereich im Sinne des halboffenen Intervalls <span class="math notranslate nohighlight">\([\texttt{startwert}, \texttt{endwert})\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-2-2 admonition">
+<p class="admonition-title">Aufgabe 2.2</p>
+<p>Erstellen Sie mit dem Befehl <code class="docutils literal notranslate"><span class="pre">np.arange</span></code> einen Vektor mit den ganzzahligen Werten von <span class="math notranslate nohighlight">\(10\)</span> bis <span class="math notranslate nohighlight">\(20\)</span>. Speichern Sie das Ergebnis in der Variable <code class="docutils literal notranslate"><span class="pre">x_range</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Standardmäßig verwendet die Funktion <code class="docutils literal notranslate"><span class="pre">np.arange</span></code>einen Abstand von <span class="math notranslate nohighlight">\(1\)</span> zwischen zwei aufeinanderfolgenden Einträgen.
+Es ist aber auch möglich einen anderen Abstand festzulegen.
+Übergibt man der Funktion <code class="docutils literal notranslate"><span class="pre">np.arange</span></code> ein drittes Argument dann lassen sich auch Vektoren mit beliebigen Abständen erzeugen:</p>
+<p><code class="docutils literal notranslate"><span class="pre">np.arange(startwert,</span> <span class="pre">endwert,</span> <span class="pre">abstand)</span></code></p>
+<p>Zum Beispiel liefert der folgende Code ein Vektor mit Abstand <span class="math notranslate nohighlight">\(3\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-2-3 admonition">
+<p class="admonition-title">Aufgabe 2.3</p>
+<p>Erstellen Sie einen Vektor <code class="docutils literal notranslate"><span class="pre">y_range</span></code>, dessen Elemente bei <span class="math notranslate nohighlight">\(-2\)</span> beginnen, bei <span class="math notranslate nohighlight">\(3\)</span> enden und jeweils durch einen Abstand von <span class="math notranslate nohighlight">\(0.5\)</span> getrennt sind.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-aufgabe-2-4 admonition">
+<p class="admonition-title">Aufgabe 2.4</p>
+<p>Erstellen Sie einen Vektor <code class="docutils literal notranslate"><span class="pre">z_range</span></code>, dessen Elemente bei <span class="math notranslate nohighlight">\(0\)</span> beginnen, bei <span class="math notranslate nohighlight">\(30\)</span> enden und jeweils durch einen Abstand von <span class="math notranslate nohighlight">\(2\)</span> getrennt sind.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">z_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Anstatt den Abstand zwischen den einzelnen Elementen eines Vektors, ist es auch möglich die gewünschte Elementanzahl zwischen einem Start- und Endwert anzugeben. Dazu können Sie die Funktion <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> verwenden:</p>
+<p><code class="docutils literal notranslate"><span class="pre">linspace(startwert,</span> <span class="pre">endwert,</span> <span class="pre">anzahl_elemente)</span></code></p>
+<p>Im Gegensatz zu der Funktion <code class="docutils literal notranslate"><span class="pre">np.arange</span></code> ist der Endwert bei <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> im Wertebereich des Vektors enthalten. Die Funktion erzeugt also einen Wertebereich im Sinne des abgeschlossenen Intervalls <span class="math notranslate nohighlight">\([\texttt{startwert}, \texttt{endwert}]\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-2-5 admonition">
+<p class="admonition-title">Aufgabe 2.5</p>
+<p>Erstellen Sie einen Zeilenvektor mit dem Namen <code class="docutils literal notranslate"><span class="pre">y_linspace</span></code>, der bei <span class="math notranslate nohighlight">\(1\)</span> beginnt, bei <span class="math notranslate nohighlight">\(12\)</span> endet und der <span class="math notranslate nohighlight">\(4\)</span> Elemente enthält.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_linspace</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="admonition-zusatzaufgabe admonition">
+<p class="admonition-title">Zusatzaufgabe</p>
+<p>Wenn Sie einen Vektor mit Werten im gleichen Abstand von <span class="math notranslate nohighlight">\(1\)</span> bis <span class="math notranslate nohighlight">\(2\pi\)</span>
+mit <span class="math notranslate nohighlight">\(100\)</span> Elementen erstellen wollten, würden Sie dann <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> oder <code class="docutils literal notranslate"><span class="pre">np.arange</span></code> verwenden?</p>
+</div>
+</section>
+<section id="arrayerstellung-mittels-funktionen">
+<h2>Arrayerstellung mittels Funktionen<a class="headerlink" href="#arrayerstellung-mittels-funktionen" title="Link to this heading">#</a></h2>
+<p>In Python gibt es neben Funktionen, die Vektoren mit aufeinander folgenden Werten oder mit Werten einer konstanten Differenz erzeugen, auch weitere Funktionen, mit denen Arrays beliebiger Dimension erstellt werden können.
+Zum Beispiel erstellt die Funktion <code class="docutils literal notranslate"><span class="pre">np.random.rand(n)</span></code> einen Vektor mit <span class="math notranslate nohighlight">\(n\)</span> zufälligen Einträgen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># erstellt ein Vektor der Länge 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-3-1 admonition">
+<p class="admonition-title">Aufgabe 3.1</p>
+<p>Erstellen Sie einen Vektor der Länge <span class="math notranslate nohighlight">\(7\)</span> mit Zufallseinträgen und speichern Sie den Vektor in der Variablen <code class="docutils literal notranslate"><span class="pre">y_rand</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Verwenden Sie die Funktion <code class="docutils literal notranslate"><span class="pre">np.random.rand</span></code> und verwenden Sie <span class="math notranslate nohighlight">\(7\)</span> als Argument.</p>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Die Funktion <code class="docutils literal notranslate"><span class="pre">np.random.randn</span></code> erlaubt auch mehrere Eingaben, um zum Beispiel Matrizen zu erzeugen. Der Code <code class="docutils literal notranslate"><span class="pre">np.random.randn(n,</span> <span class="pre">m)</span></code> erstellt eine <span class="math notranslate nohighlight">\((n \times m)\)</span> Matrix mit zufälligen Einträgen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># erstellt eine 3 x 2 Matrix</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-3-2 admonition">
+<p class="admonition-title">Aufgabe 3.2</p>
+<p>Erstellen Sie eine <span class="math notranslate nohighlight">\((4 \times 4)\)</span> Matrix mit zufälligen Einträgen und speichern Sie die Matrix in der Variablen <code class="docutils literal notranslate"><span class="pre">A_rand</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A_rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<p>Es gibt noch weitere Funktionen, um Arrays einer bestimmten Dimension und Größe zu erzeugen. Beispielsweise erzeugen die Funktionen <code class="docutils literal notranslate"><span class="pre">np.zeros</span></code> und <code class="docutils literal notranslate"><span class="pre">np.ones</span></code> Arrays, die ausschließlich aus Nullen bzw. Einsen bestehen.
+Die Erstellung von Vektoren funktioniert hierbei analog wie bei Funktion <code class="docutils literal notranslate"><span class="pre">np.random.randn</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-3-3 admonition">
+<p class="admonition-title">Aufgabe 3.3</p>
+<p>Erzeugen Sie mit Hilfe der Funktion <code class="docutils literal notranslate"><span class="pre">np.zeros</span></code> einen Vektor <code class="docutils literal notranslate"><span class="pre">x_zero</span></code> der Länge <span class="math notranslate nohighlight">\(4\)</span> und ausschließlich Null-Einträgen.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x_zero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Das Erzeugen von <span class="math notranslate nohighlight">\((m \times n)\)</span> Matrizen mittels <code class="docutils literal notranslate"><span class="pre">np.ones</span></code> oder <code class="docutils literal notranslate"><span class="pre">np.zeros</span></code> unterscheidet sich jedoch leicht zu der Funktion <code class="docutils literal notranslate"><span class="pre">np.random.rand</span></code>.</p>
+<p>In diesem Fall muss man die Anzahl der Zeilen <span class="math notranslate nohighlight">\(m\)</span> und die Anzahl der Spalten <span class="math notranslate nohighlight">\(n\)</span> in einem Tupel <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code> oder einer Liste <code class="docutils literal notranslate"><span class="pre">[m,</span> <span class="pre">n]</span></code> zusammenfassen und als Eingabe verwenden.
+Beides liefert jedoch dasselbe Ergebnis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A_rund</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="c1"># runde Klammern um 4, 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A_rund =&quot;</span><span class="p">,</span> <span class="n">A_rund</span><span class="p">)</span>
+
+<span class="n">A_eckig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="c1"># eckige Klammern um 4, 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A_eckig =&quot;</span><span class="p">,</span> <span class="n">A_eckig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-3-4 admonition">
+<p class="admonition-title">Aufgabe 3.4</p>
+<p>Erzeugen Sie mit Hilfe der Funktion <code class="docutils literal notranslate"><span class="pre">np.zeros</span></code> eine <span class="math notranslate nohighlight">\((4 \times 7)\)</span> Matrix aus Nullen und speichern Sie das Ergebnis in einer Varaiblen <code class="docutils literal notranslate"><span class="pre">A_zero</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A_zero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+
+<span class="c1"># alternativ</span>
+<span class="n">A_zero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<p>Sie können die Größe, die Dimension und die Anzahl der Elemente eines bereits erstellten Array mit Hilfe der folgenden Funktionen auslesen:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">shape</span></code>: Größe des Arrays</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ndim</span></code>: Dimension des Arrays</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">size</span></code>: Anzahl der gesamten Elemente des Arrays</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Mit nur einer Codezeile können Sie so ein Array erstellen, das genauso groß ist wie die bereits vorhandene Matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">B_same_shape_as_A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-aufgabe-3-5 admonition">
+<p class="admonition-title">Aufgabe 3.5</p>
+<p>Bestimmen Sie die Dimension, die Größe und die Anzahl der Elemente des Arrays <code class="docutils literal notranslate"><span class="pre">A_mystery</span></code>. Was fällt bezüglich der Beziehung zwischen der Größe und der Anzahl der Elemente des Arrays auf? Erstellen Sie ein Array <code class="docutils literal notranslate"><span class="pre">B</span></code>, welches nur Nulleinträge hat und dieselbe Größe wie <code class="docutils literal notranslate"><span class="pre">A_mystery</span></code> hat.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ihr Code </span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
+
+
+<span class="c1"># load A_mystery</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A_mystery</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A_mystery</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A_mystery</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Lösung</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A_mystery</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A_mystery</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A_mystery</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">A_mystery</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jaheieck/pythonkurs-test",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content\chapter02_basics\arrays"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="array_intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Vektoren und Matrizen</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="indizierung.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Indizierung von Arrays</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manuelle-arrayerstellung">Manuelle Arrayerstellung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vektoren-mit-werten-in-gleichmaszigen-abstanden">Vektoren mit Werten in gleichmäßigen Abständen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrayerstellung-mittels-funktionen">Arrayerstellung mittels Funktionen</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jacob Heieck, Alena Ulke
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

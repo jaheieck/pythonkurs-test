@@ -1,0 +1,20 @@
+ /* adjust font size of text body and itemize (p) */
+body, p {
+   font-size: 20px;
+}
+
+/* Schriftgröße für Code */
+pre, code, div.CodeMirror-code, div.CodeMirror-pre {
+    font-size: 18px; 
+}
+
+/* adjust font size of bold text in the 
+toc on the right*/
+span.caption-text {
+    font-size: 18px;
+}
+
+/* adjust font size of toc on the right*/
+li{
+    font-size: 16px;
+}
